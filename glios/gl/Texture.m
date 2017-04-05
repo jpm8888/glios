@@ -115,6 +115,9 @@ const int NO_TEXTURE = 0;
     [GLUtil checkGlError :"glUniform1i()"];
 }
 
+-(void) bind{
+    
+}
 
 -(void) bind : (GLint) toWhich {
     [self bind:toWhich :GL_TEXTURE0];
