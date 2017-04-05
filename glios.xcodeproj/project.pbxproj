@@ -13,6 +13,22 @@
 		D85EF7F41E94C21300308F78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D85EF7F21E94C21300308F78 /* Main.storyboard */; };
 		D85EF7F61E94C21300308F78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D85EF7F51E94C21300308F78 /* Assets.xcassets */; };
 		D85EF7F91E94C21300308F78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D85EF7F71E94C21300308F78 /* LaunchScreen.storyboard */; };
+		D85EF8301E94C3DB00308F78 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8171E94C3DB00308F78 /* Camera.m */; };
+		D85EF8311E94C3DB00308F78 /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8191E94C3DB00308F78 /* Circle.m */; };
+		D85EF8321E94C3DB00308F78 /* FrameBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF81B1E94C3DB00308F78 /* FrameBuffer.m */; };
+		D85EF8331E94C3DB00308F78 /* GLMath.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF81D1E94C3DB00308F78 /* GLMath.m */; };
+		D85EF8341E94C3DB00308F78 /* GLUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF81F1E94C3DB00308F78 /* GLUtil.m */; };
+		D85EF8351E94C3DB00308F78 /* OrthographicCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8211E94C3DB00308F78 /* OrthographicCamera.m */; };
+		D85EF8361E94C3DB00308F78 /* Polygon.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8231E94C3DB00308F78 /* Polygon.m */; };
+		D85EF8371E94C3DB00308F78 /* Ray.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8251E94C3DB00308F78 /* Ray.m */; };
+		D85EF8381E94C3DB00308F78 /* Rectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8271E94C3DB00308F78 /* Rectangle.m */; };
+		D85EF8391E94C3DB00308F78 /* ShaderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8291E94C3DB00308F78 /* ShaderProgram.m */; };
+		D85EF83A1E94C3DB00308F78 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF82B1E94C3DB00308F78 /* Texture.m */; };
+		D85EF83B1E94C3DB00308F78 /* VertexAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF82D1E94C3DB00308F78 /* VertexAttribute.m */; };
+		D85EF83C1E94C3DB00308F78 /* VertexAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF82F1E94C3DB00308F78 /* VertexAttributes.m */; };
+		D85EF8401E94C42500308F78 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85EF83E1E94C42500308F78 /* GLKit.framework */; };
+		D85EF8411E94C42500308F78 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85EF83F1E94C42500308F78 /* OpenGLES.framework */; };
+		D85EF8431E94C44900308F78 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85EF8421E94C44900308F78 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +42,35 @@
 		D85EF7F51E94C21300308F78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D85EF7F81E94C21300308F78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D85EF7FA1E94C21300308F78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D85EF8161E94C3DB00308F78 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = gl/Camera.h; sourceTree = "<group>"; };
+		D85EF8171E94C3DB00308F78 /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Camera.m; path = gl/Camera.m; sourceTree = "<group>"; };
+		D85EF8181E94C3DB00308F78 /* Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Circle.h; path = gl/Circle.h; sourceTree = "<group>"; };
+		D85EF8191E94C3DB00308F78 /* Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Circle.m; path = gl/Circle.m; sourceTree = "<group>"; };
+		D85EF81A1E94C3DB00308F78 /* FrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrameBuffer.h; path = gl/FrameBuffer.h; sourceTree = "<group>"; };
+		D85EF81B1E94C3DB00308F78 /* FrameBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrameBuffer.m; path = gl/FrameBuffer.m; sourceTree = "<group>"; };
+		D85EF81C1E94C3DB00308F78 /* GLMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLMath.h; path = gl/GLMath.h; sourceTree = "<group>"; };
+		D85EF81D1E94C3DB00308F78 /* GLMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLMath.m; path = gl/GLMath.m; sourceTree = "<group>"; };
+		D85EF81E1E94C3DB00308F78 /* GLUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLUtil.h; path = gl/GLUtil.h; sourceTree = "<group>"; };
+		D85EF81F1E94C3DB00308F78 /* GLUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLUtil.m; path = gl/GLUtil.m; sourceTree = "<group>"; };
+		D85EF8201E94C3DB00308F78 /* OrthographicCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrthographicCamera.h; path = gl/OrthographicCamera.h; sourceTree = "<group>"; };
+		D85EF8211E94C3DB00308F78 /* OrthographicCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrthographicCamera.m; path = gl/OrthographicCamera.m; sourceTree = "<group>"; };
+		D85EF8221E94C3DB00308F78 /* Polygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Polygon.h; path = gl/Polygon.h; sourceTree = "<group>"; };
+		D85EF8231E94C3DB00308F78 /* Polygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Polygon.m; path = gl/Polygon.m; sourceTree = "<group>"; };
+		D85EF8241E94C3DB00308F78 /* Ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ray.h; path = gl/Ray.h; sourceTree = "<group>"; };
+		D85EF8251E94C3DB00308F78 /* Ray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ray.m; path = gl/Ray.m; sourceTree = "<group>"; };
+		D85EF8261E94C3DB00308F78 /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rectangle.h; path = gl/Rectangle.h; sourceTree = "<group>"; };
+		D85EF8271E94C3DB00308F78 /* Rectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Rectangle.m; path = gl/Rectangle.m; sourceTree = "<group>"; };
+		D85EF8281E94C3DB00308F78 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = gl/ShaderProgram.h; sourceTree = "<group>"; };
+		D85EF8291E94C3DB00308F78 /* ShaderProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShaderProgram.m; path = gl/ShaderProgram.m; sourceTree = "<group>"; };
+		D85EF82A1E94C3DB00308F78 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = gl/Texture.h; sourceTree = "<group>"; };
+		D85EF82B1E94C3DB00308F78 /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Texture.m; path = gl/Texture.m; sourceTree = "<group>"; };
+		D85EF82C1E94C3DB00308F78 /* VertexAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexAttribute.h; path = gl/VertexAttribute.h; sourceTree = "<group>"; };
+		D85EF82D1E94C3DB00308F78 /* VertexAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VertexAttribute.m; path = gl/VertexAttribute.m; sourceTree = "<group>"; };
+		D85EF82E1E94C3DB00308F78 /* VertexAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexAttributes.h; path = gl/VertexAttributes.h; sourceTree = "<group>"; };
+		D85EF82F1E94C3DB00308F78 /* VertexAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VertexAttributes.m; path = gl/VertexAttributes.m; sourceTree = "<group>"; };
+		D85EF83E1E94C42500308F78 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		D85EF83F1E94C42500308F78 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		D85EF8421E94C44900308F78 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +78,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D85EF8431E94C44900308F78 /* QuartzCore.framework in Frameworks */,
+				D85EF8401E94C42500308F78 /* GLKit.framework in Frameworks */,
+				D85EF8411E94C42500308F78 /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +92,7 @@
 			children = (
 				D85EF7E81E94C21300308F78 /* glios */,
 				D85EF7E71E94C21300308F78 /* Products */,
+				D85EF83D1E94C42400308F78 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +107,7 @@
 		D85EF7E81E94C21300308F78 /* glios */ = {
 			isa = PBXGroup;
 			children = (
+				D85EF8001E94C2B500308F78 /* gl */,
 				D85EF7EC1E94C21300308F78 /* AppDelegate.h */,
 				D85EF7ED1E94C21300308F78 /* AppDelegate.m */,
 				D85EF7EF1E94C21300308F78 /* ViewController.h */,
@@ -77,6 +127,49 @@
 				D85EF7EA1E94C21300308F78 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D85EF8001E94C2B500308F78 /* gl */ = {
+			isa = PBXGroup;
+			children = (
+				D85EF8161E94C3DB00308F78 /* Camera.h */,
+				D85EF8171E94C3DB00308F78 /* Camera.m */,
+				D85EF8181E94C3DB00308F78 /* Circle.h */,
+				D85EF8191E94C3DB00308F78 /* Circle.m */,
+				D85EF81A1E94C3DB00308F78 /* FrameBuffer.h */,
+				D85EF81B1E94C3DB00308F78 /* FrameBuffer.m */,
+				D85EF81C1E94C3DB00308F78 /* GLMath.h */,
+				D85EF81D1E94C3DB00308F78 /* GLMath.m */,
+				D85EF81E1E94C3DB00308F78 /* GLUtil.h */,
+				D85EF81F1E94C3DB00308F78 /* GLUtil.m */,
+				D85EF8201E94C3DB00308F78 /* OrthographicCamera.h */,
+				D85EF8211E94C3DB00308F78 /* OrthographicCamera.m */,
+				D85EF8221E94C3DB00308F78 /* Polygon.h */,
+				D85EF8231E94C3DB00308F78 /* Polygon.m */,
+				D85EF8241E94C3DB00308F78 /* Ray.h */,
+				D85EF8251E94C3DB00308F78 /* Ray.m */,
+				D85EF8261E94C3DB00308F78 /* Rectangle.h */,
+				D85EF8271E94C3DB00308F78 /* Rectangle.m */,
+				D85EF8281E94C3DB00308F78 /* ShaderProgram.h */,
+				D85EF8291E94C3DB00308F78 /* ShaderProgram.m */,
+				D85EF82A1E94C3DB00308F78 /* Texture.h */,
+				D85EF82B1E94C3DB00308F78 /* Texture.m */,
+				D85EF82C1E94C3DB00308F78 /* VertexAttribute.h */,
+				D85EF82D1E94C3DB00308F78 /* VertexAttribute.m */,
+				D85EF82E1E94C3DB00308F78 /* VertexAttributes.h */,
+				D85EF82F1E94C3DB00308F78 /* VertexAttributes.m */,
+			);
+			name = gl;
+			sourceTree = "<group>";
+		};
+		D85EF83D1E94C42400308F78 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D85EF8421E94C44900308F78 /* QuartzCore.framework */,
+				D85EF83E1E94C42500308F78 /* GLKit.framework */,
+				D85EF83F1E94C42500308F78 /* OpenGLES.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,9 +244,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D85EF8371E94C3DB00308F78 /* Ray.m in Sources */,
+				D85EF8361E94C3DB00308F78 /* Polygon.m in Sources */,
+				D85EF83C1E94C3DB00308F78 /* VertexAttributes.m in Sources */,
+				D85EF8301E94C3DB00308F78 /* Camera.m in Sources */,
 				D85EF7F11E94C21300308F78 /* ViewController.m in Sources */,
+				D85EF8311E94C3DB00308F78 /* Circle.m in Sources */,
+				D85EF8321E94C3DB00308F78 /* FrameBuffer.m in Sources */,
+				D85EF8341E94C3DB00308F78 /* GLUtil.m in Sources */,
+				D85EF8331E94C3DB00308F78 /* GLMath.m in Sources */,
 				D85EF7EE1E94C21300308F78 /* AppDelegate.m in Sources */,
+				D85EF83B1E94C3DB00308F78 /* VertexAttribute.m in Sources */,
 				D85EF7EB1E94C21300308F78 /* main.m in Sources */,
+				D85EF8351E94C3DB00308F78 /* OrthographicCamera.m in Sources */,
+				D85EF8391E94C3DB00308F78 /* ShaderProgram.m in Sources */,
+				D85EF8381E94C3DB00308F78 /* Rectangle.m in Sources */,
+				D85EF83A1E94C3DB00308F78 /* Texture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
