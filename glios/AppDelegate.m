@@ -16,7 +16,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Hello World
+    // Hello JPM
     // Override point for customization after application launch.
     return YES;
 }
