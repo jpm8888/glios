@@ -10,7 +10,6 @@
 #import "GLUtil.h"
 
 @implementation VertexAttributes{
-    NSMutableArray *attributes;
     GLint vertexSize;
 }
 
@@ -21,7 +20,7 @@
         return self;
     }
     
-    attributes = attrs;
+    self.attributes = attrs;
     vertexSize = [self calcualteOffsets];
     return self;
 }
@@ -47,8 +46,8 @@
 
 -(GLint) calcualteOffsets{ //private method
     GLint count = 0;
-    for (int i = 0; [attributes count]; i++) {
-        VertexAttribute * attribute = [attributes objectAtIndex:i];
+    for (int i = 0; [self.attributes count]; i++) {
+        VertexAttribute * attribute = [self.attributes objectAtIndex:i];
         attribute.offset = count;
         count += [attribute getSizeInBytes];
     }
@@ -56,11 +55,11 @@
 }
 
 -(NSUInteger) size{
-    return [attributes count];
+    return [self.attributes count];
 }
 
 -(VertexAttribute*) get : (int) index{
-    return [attributes objectAtIndex:index];
+    return [self.attributes objectAtIndex:index];
 }
 
 @end

@@ -19,7 +19,6 @@
 		D85EF8331E94C3DB00308F78 /* GLMath.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF81D1E94C3DB00308F78 /* GLMath.m */; };
 		D85EF8341E94C3DB00308F78 /* GLUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF81F1E94C3DB00308F78 /* GLUtil.m */; };
 		D85EF8351E94C3DB00308F78 /* OrthographicCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8211E94C3DB00308F78 /* OrthographicCamera.m */; };
-		D85EF8361E94C3DB00308F78 /* Polygon.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8231E94C3DB00308F78 /* Polygon.m */; };
 		D85EF8371E94C3DB00308F78 /* Ray.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8251E94C3DB00308F78 /* Ray.m */; };
 		D85EF8381E94C3DB00308F78 /* Rectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8271E94C3DB00308F78 /* Rectangle.m */; };
 		D85EF8391E94C3DB00308F78 /* ShaderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8291E94C3DB00308F78 /* ShaderProgram.m */; };
@@ -29,6 +28,7 @@
 		D85EF8401E94C42500308F78 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85EF83E1E94C42500308F78 /* GLKit.framework */; };
 		D85EF8411E94C42500308F78 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85EF83F1E94C42500308F78 /* OpenGLES.framework */; };
 		D85EF8431E94C44900308F78 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85EF8421E94C44900308F78 /* QuartzCore.framework */; };
+		D8A90BB91E9CDA8B0039518F /* Mesh.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A90BB81E9CDA8B0039518F /* Mesh.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,8 +54,6 @@
 		D85EF81F1E94C3DB00308F78 /* GLUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLUtil.m; path = gl/GLUtil.m; sourceTree = "<group>"; };
 		D85EF8201E94C3DB00308F78 /* OrthographicCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrthographicCamera.h; path = gl/OrthographicCamera.h; sourceTree = "<group>"; };
 		D85EF8211E94C3DB00308F78 /* OrthographicCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrthographicCamera.m; path = gl/OrthographicCamera.m; sourceTree = "<group>"; };
-		D85EF8221E94C3DB00308F78 /* Polygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Polygon.h; path = gl/Polygon.h; sourceTree = "<group>"; };
-		D85EF8231E94C3DB00308F78 /* Polygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Polygon.m; path = gl/Polygon.m; sourceTree = "<group>"; };
 		D85EF8241E94C3DB00308F78 /* Ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ray.h; path = gl/Ray.h; sourceTree = "<group>"; };
 		D85EF8251E94C3DB00308F78 /* Ray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ray.m; path = gl/Ray.m; sourceTree = "<group>"; };
 		D85EF8261E94C3DB00308F78 /* Rectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rectangle.h; path = gl/Rectangle.h; sourceTree = "<group>"; };
@@ -71,6 +69,8 @@
 		D85EF83E1E94C42500308F78 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		D85EF83F1E94C42500308F78 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		D85EF8421E94C44900308F78 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D8A90BB71E9CDA8B0039518F /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mesh.h; path = gl/Mesh.h; sourceTree = "<group>"; };
+		D8A90BB81E9CDA8B0039518F /* Mesh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mesh.m; path = gl/Mesh.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,8 +144,6 @@
 				D85EF81F1E94C3DB00308F78 /* GLUtil.m */,
 				D85EF8201E94C3DB00308F78 /* OrthographicCamera.h */,
 				D85EF8211E94C3DB00308F78 /* OrthographicCamera.m */,
-				D85EF8221E94C3DB00308F78 /* Polygon.h */,
-				D85EF8231E94C3DB00308F78 /* Polygon.m */,
 				D85EF8241E94C3DB00308F78 /* Ray.h */,
 				D85EF8251E94C3DB00308F78 /* Ray.m */,
 				D85EF8261E94C3DB00308F78 /* Rectangle.h */,
@@ -158,6 +156,8 @@
 				D85EF82D1E94C3DB00308F78 /* VertexAttribute.m */,
 				D85EF82E1E94C3DB00308F78 /* VertexAttributes.h */,
 				D85EF82F1E94C3DB00308F78 /* VertexAttributes.m */,
+				D8A90BB71E9CDA8B0039518F /* Mesh.h */,
+				D8A90BB81E9CDA8B0039518F /* Mesh.m */,
 			);
 			name = gl;
 			sourceTree = "<group>";
@@ -245,7 +245,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D85EF8371E94C3DB00308F78 /* Ray.m in Sources */,
-				D85EF8361E94C3DB00308F78 /* Polygon.m in Sources */,
 				D85EF83C1E94C3DB00308F78 /* VertexAttributes.m in Sources */,
 				D85EF8301E94C3DB00308F78 /* Camera.m in Sources */,
 				D85EF7F11E94C21300308F78 /* ViewController.m in Sources */,
@@ -259,6 +258,7 @@
 				D85EF8351E94C3DB00308F78 /* OrthographicCamera.m in Sources */,
 				D85EF8391E94C3DB00308F78 /* ShaderProgram.m in Sources */,
 				D85EF8381E94C3DB00308F78 /* Rectangle.m in Sources */,
+				D8A90BB91E9CDA8B0039518F /* Mesh.m in Sources */,
 				D85EF83A1E94C3DB00308F78 /* Texture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +418,7 @@
 				D85EF7FF1E94C21300308F78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -12,9 +12,8 @@
 
 @interface FrameBuffer : NSObject
 
--(instancetype) initFrameBuffer :(Format) format :(int) width :(int) height :(BOOL) hasDepth;
--(void) setTexture :(Texture*) texture;
--(void) dispose;
+-(instancetype) init :(Format) format :(int) width :(int) height :(BOOL) hasDepth : (int) scr_width: (int) scr_height;
+//-(void) setTexture :(Texture*) texture;
 -(void) bind;
 -(void) unbind;
 -(void) begin;
@@ -23,32 +22,14 @@
 -(Texture*) getColorBufferTexture;
 -(int) getHeight;
 -(int) getWidth;
+-(void) dispose;
+-(GLuint) getFrameBufferHandle;
+-(GLuint*) getFrameBufferHandleAdr;
 
-   
-/** the framebuffer handle **/
-@property int framebufferHandle;
-    
-/** the depthbuffer render object handle **/
-@property int depthbufferHandle;
-
-/** width **/
-@property const int width;
-
-/** height **/
- @property const int height;
-
-/** depth **/
-@property const BOOL hasDepth;
-
-/** the frame buffers **/
-//	private final static Map<Application, Array<FrameBuffer>> buffers = new HashMap<Application, Array<FrameBuffer>>();
-
-/** the color buffer texture **/
+@property int width, height;
+@property GLuint defaultViewportWidth, defaultViewportHeight;
 @property Texture *colorTexture;
-
-/** format **/
-//	protected final Pixmap.Format format;
-
+@property const BOOL hasDepth;
 @property const Format format;
 
 @end

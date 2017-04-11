@@ -10,7 +10,7 @@
 
 @implementation Camera {
     GLKVector3 tmpVec;
-    const Ray *ray;
+    Ray *ray;
     GLKMatrix4 tmpMat;
     GLKQuaternion tmp1;
     GLKQuaternion tmp2;

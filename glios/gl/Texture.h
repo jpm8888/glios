@@ -43,9 +43,11 @@ typedef enum {
 @property TextureFilter minFilter, magFilter;
 @property TextureWrap uWrap,vWrap;
 
+
 -(instancetype) init :(UIImage*) image;
 -(instancetype) initUsingFilePath : (NSString*) imgFilePath;
 -(instancetype) init : (GLuint) texName : (int) w : (int) h;
+-(instancetype) initEmptyImage : (int) w : (int) h : (Format) f;
 -(GLuint) setupTexture :(UIImage*) image;
 -(void) checkTextureError :(GLuint) tex;
 -(void) setFilter :(TextureFilter) minFilter :(TextureFilter) magFilter;
@@ -60,6 +62,7 @@ typedef enum {
 -(void) bind : (GLint) toWhich ;
 -(BOOL) checkPowerofTwo;
 -(void) updateTexture :(UIImage*) image;
+-(GLuint) getTextureHandle;
 -(void) dispose;
 
 @end

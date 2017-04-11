@@ -405,7 +405,6 @@ GLuint NO_PROGRAM = -1;
 {
     GLint location = [self fetchAttributeLocation :name];
     if (location == -1){
-//        LOG(@"EMPTY shader Loc--> %s", name);
         [GLUtil LOG:@"ShaderProgram" :[NSString stringWithFormat:@"EMPTY shader Loc--> %s", name]];
         return;
     }

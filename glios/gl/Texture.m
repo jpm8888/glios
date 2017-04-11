@@ -10,14 +10,16 @@
 #import "GLMath.h"
 
 @implementation Texture{
-    GLuint texture;
+    GLuint textureHandle;
 }
 const int NO_TEXTURE = 0;
+
+@synthesize width, height;
 
 -(instancetype) init :(UIImage*) image{
     if (!self) self = [super init];
     [self assignDimensions :image];
-    texture = [self setupTexture :image];
+    textureHandle = [self setupTexture :image];
     return self;
 }
 
@@ -34,8 +36,30 @@ const int NO_TEXTURE = 0;
     if (!self) self = [super init];
     self.width = w;
     self.height = h;
-    texture = texName;
+    textureHandle = texName;
     return self;
+}
+
+-(instancetype) initEmptyImage : (int) w : (int) h : (Format) f{
+    if (!self) self = [super init];
+    textureHandle = [self createTexture:w :h :f];
+    return self;
+}
+
+-(GLuint) createTexture : (int) w : (int) h : (Format) f{
+    self.width = w;
+    self.height = h;
+    GLubyte* imageData = (GLubyte *) calloc(w * h * 4, sizeof(GLubyte));
+    GLuint texName;
+    glGenTextures(1, &texName);
+    
+    [GLUtil checkGlError:"Texture.createTexture().glGenTextures"];
+    [self setFilter:Linear :Linear] ;
+    [self setWrap:ClampToEdge :ClampToEdge];
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, self.width, self.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
+    [GLUtil checkGlError:"Texture.createTexture().glTexImage2D"];
+    free(imageData);
+    return texName;
 }
 
 
@@ -109,7 +133,7 @@ const int NO_TEXTURE = 0;
 -(void) bind :(GLint) toWhich :(GLint) textureNumber {
     glActiveTexture(textureNumber);
     [GLUtil checkGlError:"glActiveTexture()"];
-    glBindTexture(GL_TEXTURE_2D, texture);
+    glBindTexture(GL_TEXTURE_2D, textureHandle);
     [GLUtil checkGlError:"glBindTexture()"];
     glUniform1i(toWhich, 0);
     [GLUtil checkGlError :"glUniform1i()"];
@@ -139,10 +163,12 @@ const int NO_TEXTURE = 0;
 }
 
 -(void) dispose {
-    glDeleteTextures(1, &texture);
+    glDeleteTextures(1, &textureHandle);
 }
 
-
+-(GLuint) getTextureHandle{
+    return textureHandle;
+}
      
      
 @end

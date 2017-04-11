@@ -11,6 +11,7 @@
 
 @interface VertexAttributes : NSObject
 
+@property NSMutableArray *attributes;
 -(instancetype) init : (NSMutableArray*) attrs;
 -(GLint) getOffset : (Usage) usage : (GLint) defaultIfNotFound;
 -(GLint) getOffset : (Usage) usage;
