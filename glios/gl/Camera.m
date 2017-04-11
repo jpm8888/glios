@@ -77,23 +77,25 @@
 }
 
 -(void) rotate :(const GLKMatrix4) transform {
-    direction.rot(transform);
-    up.rot(transform);
+    _direction = GLKVector3Make(
+    _direction.x * transform.m00 + _direction.y * transform.m01 + _direction.z * transform.m02,
+    _direction.x * transform.m10 + _direction.y * transform.m11 + _direction.z * transform.m12,
+    _direction.x * transform.m20 + _direction.y * transform.m21 + _direction.z * transform.m22);
+    
+    
+    _up = GLKVector3Make(
+    _up.x * transform.m00 + _up.y * transform.m01 + _up.z * transform.m02,
+    _up.x * transform.m10 + _up.y * transform.m11 + _up.z * transform.m12,
+    _up.x * transform.m20 + _up.y * transform.m21 + _up.z * transform.m22);
 }
 
--(void) rotateQuat :(GLKQuaternion) quat {
-//    quat.transform(direction);
-    quat = [self transform:self.direction];
-    quat.transform(up);
-    quat = [self transform:self.up];
-}
 
 -(void) rotateAround :(GLKVector3) point :(GLKVector3) axis :(float) angle {
     tmpVec = point;
     tmpVec = GLKVector3Subtract(tmpVec, _position);
     [self translate :tmpVec];
     [self rotate :axis :angle];
-    tmpVec.rotate(axis, angle);
+    tmpVec = GLKMatrix4MultiplyVector3(GLKMatrix4RotateWithVector3(GLKMatrix4Identity, angle, axis), tmpVec);
     [self translate :-tmpVec.x :-tmpVec.y :-tmpVec.z];
 }
 
