@@ -46,7 +46,7 @@
 -(void) rotate :(float) angle :(float) axisX :(float) axisY :(float) axisZ;
 -(void) rotate :(GLKVector3) axis :(float) angle;
 -(void) rotate :(const GLKMatrix4) transform;
--(void) rotateQuat :(GLKQuaternion) quat;
+//-(void) rotateQuat :(GLKQuaternion) quat;
 -(GLKVector3) transform :(GLKVector3) v;
 -(void) rotateAround :(GLKVector3) point :(GLKVector3) axis :(float) angle;
 //-(void) transform :(const GLKMatrix4) transform;
