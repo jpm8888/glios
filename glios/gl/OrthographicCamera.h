@@ -10,8 +10,15 @@
 
 @interface OrthographicCamera : Camera
 
-/** the zoom of the camera **/
-
+-(instancetype) init;
+-(instancetype) init :(float) viewportWidth :(float) viewportHeight;
+-(void) update;
+-(void) update :(BOOL) updateFrustum;
+-(void) setToOrtho :(BOOL) yDown;
+-(void) setToOrtho :(BOOL) yDown :(float) viewportWidth :(float) viewportHeight;
+-(void) rotate :(float) angle;
+-(void) translate :(float) x :(float) y;
+-(void) translate :(GLKVector2) vec;
 @property float zoom;
 
 @end
