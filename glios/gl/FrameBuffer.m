@@ -16,14 +16,14 @@
 }
 
 
--(instancetype) init :(Format) format :(int) width :(int) height :(BOOL) hasDepth : (int) scr_width: (int) scr_height {
+-(instancetype) init :(Format) format :(int) width :(int) height :(BOOL) hasDepth{
     if (!self) self = [super init];
     self.width = width;
     self.height = height;
     self.format = format;
     self.hasDepth = hasDepth;
-    self.defaultViewportWidth = scr_width;
-    self.defaultViewportHeight = scr_height;
+    self.defaultViewportWidth = [[UIScreen mainScreen] bounds].size.width;
+    self.defaultViewportHeight = [[UIScreen mainScreen] bounds].size.height;
     [self build];
     return self;
 }
