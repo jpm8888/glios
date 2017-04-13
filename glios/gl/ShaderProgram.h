@@ -20,6 +20,7 @@ extern NSString *const TANGENT_ATTRIBUTE;
 extern NSString *const BINORMAL_ATTRIBUTE;
 extern NSString *const BONEWEIGHT_ATTRIBUTE;
 
+-(instancetype) init : (NSString*) vShaderFileName : (NSString*) fShaderFileName : (NSString*) type;
 
 -(void) begin;
 -(void) end;

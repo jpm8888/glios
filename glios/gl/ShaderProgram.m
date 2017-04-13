@@ -22,24 +22,51 @@ NSString *const BONEWEIGHT_ATTRIBUTE = @"a_boneWeight";
 
 GLuint NO_PROGRAM = -1;
 
+-(instancetype) init : (NSString*) vShaderFileName : (NSString*) fShaderFileName : (NSString*) type{
+    if (!self) self = [super init];
+    NSString* vsh = [self getFileContents:vShaderFileName :type];
+    NSString* fsh = [self getFileContents:fShaderFileName :type];
+    program = [self createProgram:[vsh UTF8String] :[fsh UTF8String]];
+    if (program != NO_PROGRAM){
+        [GLUtil LOG:@"ShaderProgram" :[NSString stringWithFormat:@"Program created successfully with pid -> %d", program]];
+    }
+    return self;
+}
+
+-(NSString *) getFileContents : (NSString*) fileName : (NSString*) type{
+    NSString* path = [[NSBundle mainBundle] pathForResource:fileName ofType:type];
+    NSError* error;
+    NSString* shaderString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+    if (!shaderString) {
+        [GLUtil LOG:@"ShaderProgram" : [NSString stringWithFormat:@"Error loading shader: %@", error.localizedDescription]];
+    }
+    return shaderString;
+}
+
 -(GLuint) loadShader :(GLenum) shaderType :(const char*) pSource {
     GLuint shader = glCreateShader(shaderType);
     if (shader) {
         glShaderSource(shader, 1, &pSource, NULL);
+        [GLUtil checkGlError:"ShaderProgram.loadShader() after glShaderSource()"];
         glCompileShader(shader);
+        [GLUtil checkGlError:"ShaderProgram.loadShader() after glCompileShader()"];
         GLint compiled = 0;
         glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
+        [GLUtil checkGlError:"ShaderProgram.loadShader() after glGetShaderiv()"];
         if (!compiled) {
             GLint infoLen = 0;
             glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLen);
+            [GLUtil checkGlError:"ShaderProgram.loadShader() after glGetShaderiv()"];
             if (infoLen) {
                 char* buf = (char*) malloc(infoLen);
                 if (buf) {
                     glGetShaderInfoLog(shader, infoLen, NULL, buf);
+                    [GLUtil checkGlError:"ShaderProgram.loadShader() after glGetShaderInfoLog()"];
                     [GLUtil LOG:@"ShaderProgram" :[NSString stringWithFormat:@"Could not compile shader %d:\n%s\n",shaderType,buf]];
                     free(buf);
                 }
                 glDeleteShader(shader);
+                [GLUtil checkGlError:"ShaderProgram.loadShader() after glDeleteShader()"];
                 shader = NO_PROGRAM;
             }
         }
@@ -64,59 +91,56 @@ GLuint NO_PROGRAM = -1;
     program = glCreateProgram();
     if (program) {
         glAttachShader(program, vertexShader);
-        [GLUtil checkGlError:"glAttachShader"];
+        [GLUtil checkGlError:"ShaderProgram.createProgram() after glAttachShader"];
         glAttachShader(program, pixelShader);
-        [GLUtil checkGlError:"glAttachShader"];
+        [GLUtil checkGlError:"ShaderProgram.createProgram() after glAttachShader"];
         
         glLinkProgram(program);
+        [GLUtil checkGlError:"ShaderProgram.createProgram() after glLinkProgram"];
+
         GLint linkStatus = GL_FALSE;
         glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);
+        [GLUtil checkGlError:"ShaderProgram.createProgram() after glGetProgramiv"];
+        
         if (linkStatus != GL_TRUE) {
             GLint bufLength = 0;
             glGetProgramiv(program, GL_INFO_LOG_LENGTH, &bufLength);
+            [GLUtil checkGlError:"ShaderProgram.createProgram() after glGetProgramiv"];
+
             if (bufLength) {
                 char* buf = (char*) malloc(bufLength);
                 if (buf) {
                     glGetProgramInfoLog(program, bufLength, NULL, buf);
+                    [GLUtil checkGlError:"ShaderProgram.createProgram() after glGetProgramInfoLog"];
+
                     [GLUtil LOG:@"ShaderProgram" :[NSString stringWithFormat:@"Could not link program:\n%s\n", buf]];
                     free(buf);
                 }
             }
             glDeleteProgram(program);
+            [GLUtil checkGlError:"ShaderProgram.createProgram() after glDeleteProgram"];
+
             program = 0;
         }
     }
     return program;
 }
 
--(void) build :(const char*) vertexSource :(const char*) fragmentSource {
-    program = [self createProgram :vertexSource :fragmentSource];
-}
-
-#if defined(__APPLE__) && defined (TARGET_OS_IPHONE)
--(void) build :(bool) isFilePath :(const char*) vshFilePath :(const char*) fshFilePath {
-    if (isFilePath){
-//        LOG(@"inside shader build");
-        [GLUtil LOG:@"ShaderProgram" :@"inside shader build"];
-    }else{
-//        LOG(@"Invalid file path");
-        [GLUtil LOG:@"ShaderProgram" :@"Invalid file path"];
-    }
-}
-
-#endif
 
 -(void) begin{
     glUseProgram(program);
+    [GLUtil checkGlError:"ShaderProgram.begin() after glUseProgram"];
 }
 
 -(void) end{
     glUseProgram(NO_PROGRAM);
+    [GLUtil checkGlError:"ShaderProgram.end() after glUseProgram"];
+
 }
 
 -(void) dispose{
-    glUseProgram(NO_PROGRAM);
     glDeleteProgram(program);
+    [GLUtil checkGlError:"ShaderProgram.dispose() after glDeleteProgram"];
 }
 
 /**
@@ -137,7 +161,6 @@ GLuint NO_PROGRAM = -1;
 
 -(void) checkError :(GLint) location :(const char*) name {
     if (location == -1){
-//        LOG(@"Error fetching %s", name);
         [GLUtil LOG:@"ShaderProgram" :[NSString stringWithFormat:@"Error fetching %s", name]];
     }
 }
@@ -208,14 +231,12 @@ GLuint NO_PROGRAM = -1;
  * @param value2 the second value
  * @param value3 the third value
  * @param value4 the fourth value */
--(void) setUniformiWithName :(const char*) name value1:(GLint) value1 value2:(GLint) value2 value3:(GLint) value3 value4:(GLint) value4
-{
+-(void) setUniformiWithName :(const char*) name value1:(GLint) value1 value2:(GLint) value2 value3:(GLint) value3 value4:(GLint) value4{
     GLint location = [self fetchUniformLocation :name];
     glUniform4i(location, value1, value2, value3, value4);
 }
 
--(void) setUniformiWithLocation :(GLint) location value1:(GLint) value1 value2:(GLint) value2 value3:(GLint) value3 value4:(GLint) value4
-{
+-(void) setUniformiWithLocation :(GLint) location value1:(GLint) value1 value2:(GLint) value2 value3:(GLint) value3 value4:(GLint) value4{
     glUniform4i(location, value1, value2, value3, value4);
 }
 
@@ -224,8 +245,7 @@ GLuint NO_PROGRAM = -1;
  *
  * @param name the name of the uniform
  * @param value the value */
--(void) setUniformfWithName :(const char*) name value:(GLfloat) value
-{
+-(void) setUniformfWithName :(const char*) name value:(GLfloat) value{
     GLint location = [self fetchUniformLocation :name];
     glUniform1f(location, value);
 }
