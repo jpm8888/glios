@@ -6,10 +6,10 @@
 //  Copyright © 2017 jpm. All rights reserved.
 //
 
-#import "MyGLView.h"
+#import "OpenGLView.h"
 #import "GLUtil.h"
 
-@implementation MyGLView
+@implementation OpenGLView
 
 - (id)initWithFrame:(CGRect)frame
 {

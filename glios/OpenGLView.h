@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyGLView : UIView{
+@interface OpenGLView : UIView{
     CAEAGLLayer* _eaglLayer;
     EAGLContext* _context;
     GLuint _colorRenderBuffer;
