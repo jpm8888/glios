@@ -12,7 +12,7 @@
 static BOOL debug = NO;
 
 +(void) checkGlError :(const char*) op{
-    if (!DEBUG) return;
+    if (!debug) return;
     for (GLint error = glGetError(); error; error= glGetError()) {
         NSLog(@"after %s() glError (0x%x)\n", op, error);
     }
@@ -20,14 +20,14 @@ static BOOL debug = NO;
 
 
 +(void) printGLString :(const char *) name :(GLenum) s{
-    if (!DEBUG) return;
+    if (!debug) return;
     const char *v = (const char *) glGetString(s);
     NSLog(@"GL %s = %s\n", name, v);
 }
 
 
 +(void) LOG :(NSString*) TAG :(NSString *) msg{
-    if (!DEBUG) return;
+    if (!debug) return;
     NSLog(@"%@ :- %@",TAG , msg);
 }
 
