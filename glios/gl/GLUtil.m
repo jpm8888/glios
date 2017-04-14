@@ -8,11 +8,11 @@
 
 #import "GLUtil.h"
 
-@implementation GLUtil{
-    
-}
+@implementation GLUtil
+static BOOL debug = NO;
 
 +(void) checkGlError :(const char*) op{
+    if (!DEBUG) return;
     for (GLint error = glGetError(); error; error= glGetError()) {
         NSLog(@"after %s() glError (0x%x)\n", op, error);
     }
@@ -20,13 +20,19 @@
 
 
 +(void) printGLString :(const char *) name :(GLenum) s{
+    if (!DEBUG) return;
     const char *v = (const char *) glGetString(s);
     NSLog(@"GL %s = %s\n", name, v);
 }
 
 
 +(void) LOG :(NSString*) TAG :(NSString *) msg{
+    if (!DEBUG) return;
     NSLog(@"%@ :- %@",TAG , msg);
+}
+
++(void)setDebug:(BOOL) val{
+    debug = val;
 }
 
 @end

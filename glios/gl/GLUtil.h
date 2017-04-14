@@ -10,8 +10,11 @@
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 
-@interface GLUtil : NSObject
-
+@interface GLUtil : NSObject{
+    
+    
+}
+@property (class, nonatomic, assign) BOOL debug;
 +(void) checkGlError :(const char*) op;
 +(void) printGLString :(const char *) name :(GLenum) s;
 +(void) LOG :(NSString*) TAG :(NSString *) msg;
