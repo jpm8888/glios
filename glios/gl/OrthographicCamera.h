@@ -12,6 +12,7 @@
 
 -(instancetype) init;
 -(instancetype) init :(float) viewportWidth :(float) viewportHeight;
+-(void) fixViewPorts : (float) scrWidth : (float) scrHeight : (BOOL) setDefaultPos;
 -(void) update;
 -(void) update :(BOOL) updateFrustum;
 -(void) setToOrtho :(BOOL) yDown;

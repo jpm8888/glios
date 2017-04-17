@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ShaderProgram.h"
 
 @interface Mesh : NSObject
 
+
+
+-(instancetype) init : (NSMutableArray *) attribs;
+-(void) render : (ShaderProgram*) program : (GLint) primitiveType;
+-(void) dispose;
 @end

@@ -7,35 +7,41 @@
 //
 
 #import "Mesh.h"
-#import "VertexAttributes.h"
 #import "VertexAttribute.h"
-#import "ShaderProgram.h"
 
 @implementation Mesh{
-    int vertices_length;
-    VertexAttributes* attributes;
-    float *vertices;
+    NSMutableArray * attributes;
+    int vertices_count;
 }
 
--(instancetype) init : (float*) verts : (int) verts_length : (VertexAttributes *) attribs{
+-(instancetype) init : (NSMutableArray *) attribs{
     if (!self) self = [super init];
-    vertices = verts;
-    vertices_length = verts_length;
     attributes = attribs;
+    VertexAttribute* pos = [attribs objectAtIndex:0];
+    vertices_count = pos.length;
     return self;
 }
 
 
+
+
+
 -(void) render : (ShaderProgram*) program : (GLint) primitiveType{
-    for (VertexAttribute* va in [attributes attributes]) {
-        [program setVertexAttributeWithName:[[va alias] UTF8String] size:[va getSizeInBytes] type:[va type] normalize:[va normalized] stride:0 data:vertices];
-        [program enableVertexAttributeWithName:[[va alias] UTF8String]];
+    for (VertexAttribute* va in attributes) {
+        [program setVertexAttributeWithName:va.name size:va.size type:va.type normalize:GL_FALSE stride:0 data:va.getVertices];
+        [program enableVertexAttributeWithName:va.name];
     }
-    glDrawArrays(primitiveType, 0, vertices_length);
+    glDrawArrays(primitiveType, 0, vertices_count);
 }
 
 -(void) dispose{
-    
+    for (VertexAttribute *va in attributes) {
+        [va dispose];
+    }
+    [attributes removeAllObjects];
+    attributes = nil;
 }
+
+
 
 @end

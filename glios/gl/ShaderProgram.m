@@ -20,7 +20,7 @@ NSString *const TANGENT_ATTRIBUTE = @"a_tangent";
 NSString *const BINORMAL_ATTRIBUTE = @"a_binormal";
 NSString *const BONEWEIGHT_ATTRIBUTE = @"a_boneWeight";
 
-GLuint NO_PROGRAM = -1;
+GLuint NO_PROGRAM = 0;
 
 -(instancetype) init : (NSString*) vShaderFileName : (NSString*) fShaderFileName : (NSString*) type{
     if (!self) self = [super init];
@@ -139,6 +139,8 @@ GLuint NO_PROGRAM = -1;
 }
 
 -(void) dispose{
+    glUseProgram(NO_PROGRAM);
+    [GLUtil checkGlError:"ShaderProgram.dispose() after glUseProgram"];
     glDeleteProgram(program);
     [GLUtil checkGlError:"ShaderProgram.dispose() after glDeleteProgram"];
 }
@@ -421,19 +423,19 @@ GLuint NO_PROGRAM = -1;
  * @param normalize whether fixed point data should be normalized. Will not work on the desktop
  * @param stride the stride in bytes between successive attributes
  * @param buffer the buffer containing the vertex attributes. */
--(void) setVertexAttributeWithName :(const char*) name size:(GLint) size type:(GLint) type normalize:(GLboolean) normalize stride:(GLint) stride data:(GLvoid*) data
-{
+-(void) setVertexAttributeWithName :(const char*) name size:(GLint) size type:(GLint) type normalize:(GLboolean) normalize stride:(GLint) stride data:(GLvoid*) data{
     GLint location = [self fetchAttributeLocation :name];
     if (location == -1){
         [GLUtil LOG:@"ShaderProgram" :[NSString stringWithFormat:@"EMPTY shader Loc--> %s", name]];
         return;
     }
     glVertexAttribPointer(location, size, type, normalize, stride, data);
+    [GLUtil checkGlError:"ShaderProgram.setVertexAttributeWithName() after glVertexAttribPointer"];
 }
 
--(void) setVertexAttributeWithLocation :(GLint) location size:(GLint) size type:(GLint) type normalize:(GLboolean) normalize stride:(GLint) stride data:(GLvoid*) data
-{
+-(void) setVertexAttributeWithLocation :(GLint) location size:(GLint) size type:(GLint) type normalize:(GLboolean) normalize stride:(GLint) stride data:(GLvoid*) data{
     glVertexAttribPointer(location ,size, type, normalize, stride, data);
+    [GLUtil checkGlError:"ShaderProgram.setVertexAttributeWithLocation() after glVertexAttribPointer"];
 }
 
 

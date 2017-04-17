@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLUtil.h"
+
 
 @interface OpenGLView : UIView{
     CAEAGLLayer* _eaglLayer;

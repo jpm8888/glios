@@ -23,13 +23,18 @@
 		D85EF8381E94C3DB00308F78 /* Rectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8271E94C3DB00308F78 /* Rectangle.m */; };
 		D85EF8391E94C3DB00308F78 /* ShaderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF8291E94C3DB00308F78 /* ShaderProgram.m */; };
 		D85EF83A1E94C3DB00308F78 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF82B1E94C3DB00308F78 /* Texture.m */; };
-		D85EF83B1E94C3DB00308F78 /* VertexAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF82D1E94C3DB00308F78 /* VertexAttribute.m */; };
-		D85EF83C1E94C3DB00308F78 /* VertexAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF82F1E94C3DB00308F78 /* VertexAttributes.m */; };
 		D85EF8401E94C42500308F78 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85EF83E1E94C42500308F78 /* GLKit.framework */; };
 		D85EF8411E94C42500308F78 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85EF83F1E94C42500308F78 /* OpenGLES.framework */; };
 		D85EF8431E94C44900308F78 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85EF8421E94C44900308F78 /* QuartzCore.framework */; };
 		D8A90BB91E9CDA8B0039518F /* Mesh.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A90BB81E9CDA8B0039518F /* Mesh.m */; };
 		D8A90BBC1E9F56590039518F /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A90BBB1E9F56590039518F /* OpenGLView.m */; };
+		D8A90BC41E9F63AB0039518F /* vsh.glsl in Resources */ = {isa = PBXBuildFile; fileRef = D8A90BC31E9F63AB0039518F /* vsh.glsl */; };
+		D8A90BC61E9F63C00039518F /* fsh.glsl in Resources */ = {isa = PBXBuildFile; fileRef = D8A90BC51E9F63C00039518F /* fsh.glsl */; };
+		D8A90BC91E9F83710039518F /* VertexAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A90BC81E9F83710039518F /* VertexAttribute.m */; };
+		D8A90BCD1EA0B6670039518F /* img_small.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A90BCC1EA0B6670039518F /* img_small.png */; };
+		D8A90BCF1EA0B66E0039518F /* image_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A90BCE1EA0B66E0039518F /* image_big.png */; };
+		D8A90BD11EA0BEB70039518F /* tex.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8A90BD01EA0BEB70039518F /* tex.jpg */; };
+		D8A90BD31EA0CCF90039518F /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8A90BD21EA0CCF90039518F /* test.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,10 +68,6 @@
 		D85EF8291E94C3DB00308F78 /* ShaderProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShaderProgram.m; path = gl/ShaderProgram.m; sourceTree = "<group>"; };
 		D85EF82A1E94C3DB00308F78 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = gl/Texture.h; sourceTree = "<group>"; };
 		D85EF82B1E94C3DB00308F78 /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Texture.m; path = gl/Texture.m; sourceTree = "<group>"; };
-		D85EF82C1E94C3DB00308F78 /* VertexAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexAttribute.h; path = gl/VertexAttribute.h; sourceTree = "<group>"; };
-		D85EF82D1E94C3DB00308F78 /* VertexAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VertexAttribute.m; path = gl/VertexAttribute.m; sourceTree = "<group>"; };
-		D85EF82E1E94C3DB00308F78 /* VertexAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexAttributes.h; path = gl/VertexAttributes.h; sourceTree = "<group>"; };
-		D85EF82F1E94C3DB00308F78 /* VertexAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VertexAttributes.m; path = gl/VertexAttributes.m; sourceTree = "<group>"; };
 		D85EF83E1E94C42500308F78 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		D85EF83F1E94C42500308F78 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		D85EF8421E94C44900308F78 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -74,6 +75,14 @@
 		D8A90BB81E9CDA8B0039518F /* Mesh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mesh.m; path = gl/Mesh.m; sourceTree = "<group>"; };
 		D8A90BBA1E9F56590039518F /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
 		D8A90BBB1E9F56590039518F /* OpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLView.m; sourceTree = "<group>"; };
+		D8A90BC31E9F63AB0039518F /* vsh.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vsh.glsl; sourceTree = "<group>"; };
+		D8A90BC51E9F63C00039518F /* fsh.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fsh.glsl; path = ../fsh.glsl; sourceTree = "<group>"; };
+		D8A90BC71E9F83710039518F /* VertexAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VertexAttribute.h; path = gl/VertexAttribute.h; sourceTree = "<group>"; };
+		D8A90BC81E9F83710039518F /* VertexAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VertexAttribute.m; path = gl/VertexAttribute.m; sourceTree = "<group>"; };
+		D8A90BCC1EA0B6670039518F /* img_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_small.png; sourceTree = "<group>"; };
+		D8A90BCE1EA0B66E0039518F /* image_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_big.png; sourceTree = "<group>"; };
+		D8A90BD01EA0BEB70039518F /* tex.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tex.jpg; sourceTree = "<group>"; };
+		D8A90BD21EA0CCF90039518F /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +131,12 @@
 				D85EF7F71E94C21300308F78 /* LaunchScreen.storyboard */,
 				D85EF7FA1E94C21300308F78 /* Info.plist */,
 				D85EF7E91E94C21300308F78 /* Supporting Files */,
+				D8A90BC31E9F63AB0039518F /* vsh.glsl */,
+				D8A90BC51E9F63C00039518F /* fsh.glsl */,
+				D8A90BCE1EA0B66E0039518F /* image_big.png */,
+				D8A90BD21EA0CCF90039518F /* test.jpg */,
+				D8A90BD01EA0BEB70039518F /* tex.jpg */,
+				D8A90BCC1EA0B6670039518F /* img_small.png */,
 			);
 			path = glios;
 			sourceTree = "<group>";
@@ -157,12 +172,10 @@
 				D85EF8291E94C3DB00308F78 /* ShaderProgram.m */,
 				D85EF82A1E94C3DB00308F78 /* Texture.h */,
 				D85EF82B1E94C3DB00308F78 /* Texture.m */,
-				D85EF82C1E94C3DB00308F78 /* VertexAttribute.h */,
-				D85EF82D1E94C3DB00308F78 /* VertexAttribute.m */,
-				D85EF82E1E94C3DB00308F78 /* VertexAttributes.h */,
-				D85EF82F1E94C3DB00308F78 /* VertexAttributes.m */,
 				D8A90BB71E9CDA8B0039518F /* Mesh.h */,
 				D8A90BB81E9CDA8B0039518F /* Mesh.m */,
+				D8A90BC71E9F83710039518F /* VertexAttribute.h */,
+				D8A90BC81E9F83710039518F /* VertexAttribute.m */,
 			);
 			name = gl;
 			sourceTree = "<group>";
@@ -237,6 +250,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D85EF7F91E94C21300308F78 /* LaunchScreen.storyboard in Resources */,
+				D8A90BCF1EA0B66E0039518F /* image_big.png in Resources */,
+				D8A90BC61E9F63C00039518F /* fsh.glsl in Resources */,
+				D8A90BC41E9F63AB0039518F /* vsh.glsl in Resources */,
+				D8A90BD31EA0CCF90039518F /* test.jpg in Resources */,
+				D8A90BCD1EA0B6670039518F /* img_small.png in Resources */,
+				D8A90BD11EA0BEB70039518F /* tex.jpg in Resources */,
 				D85EF7F61E94C21300308F78 /* Assets.xcassets in Resources */,
 				D85EF7F41E94C21300308F78 /* Main.storyboard in Resources */,
 			);
@@ -250,7 +269,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D85EF8371E94C3DB00308F78 /* Ray.m in Sources */,
-				D85EF83C1E94C3DB00308F78 /* VertexAttributes.m in Sources */,
 				D85EF8301E94C3DB00308F78 /* Camera.m in Sources */,
 				D85EF7F11E94C21300308F78 /* ViewController.m in Sources */,
 				D85EF8311E94C3DB00308F78 /* Circle.m in Sources */,
@@ -258,13 +276,13 @@
 				D85EF8341E94C3DB00308F78 /* GLUtil.m in Sources */,
 				D85EF8331E94C3DB00308F78 /* GLMath.m in Sources */,
 				D85EF7EE1E94C21300308F78 /* AppDelegate.m in Sources */,
-				D85EF83B1E94C3DB00308F78 /* VertexAttribute.m in Sources */,
 				D85EF7EB1E94C21300308F78 /* main.m in Sources */,
 				D85EF8351E94C3DB00308F78 /* OrthographicCamera.m in Sources */,
 				D85EF8391E94C3DB00308F78 /* ShaderProgram.m in Sources */,
 				D85EF8381E94C3DB00308F78 /* Rectangle.m in Sources */,
 				D8A90BB91E9CDA8B0039518F /* Mesh.m in Sources */,
 				D85EF83A1E94C3DB00308F78 /* Texture.m in Sources */,
+				D8A90BC91E9F83710039518F /* VertexAttribute.m in Sources */,
 				D8A90BBC1E9F56590039518F /* OpenGLView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

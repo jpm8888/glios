@@ -19,7 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    self.glView = [[MyGLView alloc] initWithFrame:screenBounds];
+//    self.glView = [[OpenGLView alloc] initWithFrame:CGRectMake(0, 0 , 300, 300)];
+    self.glView = [[OpenGLView alloc] initWithFrame:screenBounds];
+    self.glView.center = self.view.center;
     [self.view addSubview:glView];
 }
 

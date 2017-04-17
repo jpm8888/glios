@@ -16,7 +16,10 @@
     if (!self) self = [super init];
     self.near = 0;
     self.zoom = 1;
+    self.far = 100;
     tmp = GLKVector3Make(0, 0, 0);
+    self.direction = GLKVector3Make(0, 0, -1);
+    self.up = GLKVector3Make(0, 1, 0);
     [self update];
     return self;
 }
@@ -29,14 +32,21 @@
     return [self init];
 }
 
+-(void) fixViewPorts : (float) scrWidth : (float) scrHeight : (BOOL) setDefaultPos{
+    self.viewportHeight = self.viewportWidth * scrHeight / scrWidth;
+    if (setDefaultPos){
+        self.position = GLKVector3Make(self.viewportWidth/2.0, self.viewportHeight/2.0, 0);
+    }
+}
+
 -(void) update {
     [self update :true];
 }
 
 -(void) update :(BOOL) updateFrustum {
-    
-    float left = self.zoom * - (self.viewportWidth / 2);
-    float right = self.zoom * self.viewportHeight / 2;
+
+    float left = self.zoom * (-self.viewportWidth / 2);
+    float right = self.zoom * self.viewportWidth / 2;
     float bottom = self.zoom * -(self.viewportHeight / 2);
     float top = self.zoom * self.viewportHeight / 2;
     float nearZ = self.near;
@@ -48,11 +58,13 @@
     self.view = GLKMatrix4MakeLookAt(self.position.x, self.position.y, self.position.z,
                                       center.x, center.y, center.z,
                                       self.up.x, self.up.y, self.up.z);
-    self.combined = GLKMatrix4Multiply(self.view, self.projection);
+    self.combined = GLKMatrix4Multiply(self.projection, self.view);
     if (updateFrustum){
-        //future task
-        
+        self.invProjectionView = self.combined;
+        GLKMatrix4Invert(self.invProjectionView, nil);
     }
+    
+    [self printMatrix:self.combined :@"combined"];
 }
 
 -(void) setToOrtho :(BOOL) yDown {
@@ -84,6 +96,14 @@
 
 -(void) translate :(GLKVector2) vec {
     [self translate :vec.x :vec.y :0];
+}
+
+-(void) printMatrix : (GLKMatrix4) mat : (NSString*) name{
+    NSLog(@"matrix-print with name %@", name);
+    NSLog(@"%f %f %f %f", mat.m00, mat.m10, mat.m20, mat.m30);
+    NSLog(@"%f %f %f %f", mat.m01, mat.m11, mat.m21, mat.m31);
+    NSLog(@"%f %f %f %f", mat.m02, mat.m12, mat.m22, mat.m32);
+    NSLog(@"%f %f %f %f", mat.m03, mat.m13, mat.m23, mat.m33);
 }
 
 
