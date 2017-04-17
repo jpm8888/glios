@@ -63,8 +63,6 @@
         self.invProjectionView = self.combined;
         GLKMatrix4Invert(self.invProjectionView, nil);
     }
-    
-    [self printMatrix:self.combined :@"combined"];
 }
 
 -(void) setToOrtho :(BOOL) yDown {
