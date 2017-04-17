@@ -35,6 +35,7 @@
 		D8A90BCF1EA0B66E0039518F /* image_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A90BCE1EA0B66E0039518F /* image_big.png */; };
 		D8A90BD11EA0BEB70039518F /* tex.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8A90BD01EA0BEB70039518F /* tex.jpg */; };
 		D8A90BD31EA0CCF90039518F /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8A90BD21EA0CCF90039518F /* test.jpg */; };
+		D8A90BD61EA4DD010039518F /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A90BD51EA4DD010039518F /* Color.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,8 @@
 		D8A90BCE1EA0B66E0039518F /* image_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_big.png; sourceTree = "<group>"; };
 		D8A90BD01EA0BEB70039518F /* tex.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tex.jpg; sourceTree = "<group>"; };
 		D8A90BD21EA0CCF90039518F /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
+		D8A90BD41EA4DD010039518F /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Color.h; path = gl/Color.h; sourceTree = "<group>"; };
+		D8A90BD51EA4DD010039518F /* Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Color.m; path = gl/Color.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,12 +159,16 @@
 				D85EF8171E94C3DB00308F78 /* Camera.m */,
 				D85EF8181E94C3DB00308F78 /* Circle.h */,
 				D85EF8191E94C3DB00308F78 /* Circle.m */,
+				D8A90BD41EA4DD010039518F /* Color.h */,
+				D8A90BD51EA4DD010039518F /* Color.m */,
 				D85EF81A1E94C3DB00308F78 /* FrameBuffer.h */,
 				D85EF81B1E94C3DB00308F78 /* FrameBuffer.m */,
 				D85EF81C1E94C3DB00308F78 /* GLMath.h */,
 				D85EF81D1E94C3DB00308F78 /* GLMath.m */,
 				D85EF81E1E94C3DB00308F78 /* GLUtil.h */,
 				D85EF81F1E94C3DB00308F78 /* GLUtil.m */,
+				D8A90BB71E9CDA8B0039518F /* Mesh.h */,
+				D8A90BB81E9CDA8B0039518F /* Mesh.m */,
 				D85EF8201E94C3DB00308F78 /* OrthographicCamera.h */,
 				D85EF8211E94C3DB00308F78 /* OrthographicCamera.m */,
 				D85EF8241E94C3DB00308F78 /* Ray.h */,
@@ -172,8 +179,6 @@
 				D85EF8291E94C3DB00308F78 /* ShaderProgram.m */,
 				D85EF82A1E94C3DB00308F78 /* Texture.h */,
 				D85EF82B1E94C3DB00308F78 /* Texture.m */,
-				D8A90BB71E9CDA8B0039518F /* Mesh.h */,
-				D8A90BB81E9CDA8B0039518F /* Mesh.m */,
 				D8A90BC71E9F83710039518F /* VertexAttribute.h */,
 				D8A90BC81E9F83710039518F /* VertexAttribute.m */,
 			);
@@ -271,6 +276,7 @@
 				D85EF8371E94C3DB00308F78 /* Ray.m in Sources */,
 				D85EF8301E94C3DB00308F78 /* Camera.m in Sources */,
 				D85EF7F11E94C21300308F78 /* ViewController.m in Sources */,
+				D8A90BD61EA4DD010039518F /* Color.m in Sources */,
 				D85EF8311E94C3DB00308F78 /* Circle.m in Sources */,
 				D85EF8321E94C3DB00308F78 /* FrameBuffer.m in Sources */,
 				D85EF8341E94C3DB00308F78 /* GLUtil.m in Sources */,

@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
+#import <UIKit/UIColor.h>
 
 @interface Color : NSObject
 @property float r, g, b, a;
 
 -(instancetype) init : (float) red : (float) green: (float) blue : (float) alpha;
--(instancetype) init : (GLKVector3) colors;
+-(instancetype) initUsingVector3 : (GLKVector3) colors;
+-(instancetype) initUsingUIColor : (UIColor*) color;
 @end
