@@ -75,19 +75,8 @@
     
     
     [GLUtil setDebug:YES];
-    GLfloat verts_array[] = {
-        0, 0,
-        0, 100,
-        100,100,
-        100, 0
-    };
-    
-    GLfloat color_array[] = {
-        1, 0, 0, 1,
-        0, 1, 0, 1,
-        0, 0, 1, 1,
-        1, 0, 1, 1
-    };
+    GLfloat verts_array[8];
+    GLfloat color_array[16];
     
     GLfloat tex_coords[] = {
         0, 1,
@@ -97,8 +86,14 @@
     };
     
     
+    
     camera = [[OrthographicCamera alloc] init:480 :800];
     [camera fixViewPorts:self.frame.size.width :self.frame.size.height:YES];
+    
+    [self updatePlaneVerts:verts_array :camera.viewportWidth/2 - 100 :camera.viewportHeight/2 - 100 :200 :200];
+    [self updateColor:color_array :16 :255 :0 :0 :255];
+    
+    
     Texture * texture = [[Texture alloc] initUsingFilePath:@"test.jpg"];
     
     VertexAttribute * attrib1 = [[VertexAttribute alloc] init: GL_FLOAT :2: (sizeof(verts_array)/ sizeof(verts_array[0])) : verts_array :@"a_pos"];
@@ -125,6 +120,34 @@
 //    [mesh dispose];
 }
 
+-(void) updatePlaneVerts: (GLfloat*) v : (float) x : (float) y : (float) w : (float) h{
+    v[0] = x;
+    v[1] = y;
+    
+    v[2] = x;
+    v[3] = y + h;
+    
+    v[4] = x + w;
+    v[5] = y + h;
+    
+    v[6] = x + w;
+    v[7] = y;
+}
+
+//color in 0-255
+-(void) updateColor: (GLfloat*) c : (int) len : (float) r : (float) g: (float) b : (float) a{
+    if (len % 4 != 0) {
+        NSLog(@"Invalid color size");
+        return;
+    }
+    int idx = 0;
+    while (idx < len){
+        c[idx++] = r / 255.0;
+        c[idx++] = g / 255.0;
+        c[idx++] = b / 255.0;
+        c[idx++] = a / 255.0;
+    }
+}
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     UITouch *aTouch = [touches anyObject];
