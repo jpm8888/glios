@@ -28,6 +28,8 @@
     Mesh *mesh;
     Texture *texture;
     Color *color;
+    
+    GLKMatrix4 modalMatrix;
 }
 
 
@@ -54,7 +56,7 @@
     camera = [[OrthographicCamera alloc] init:480 :800];
     [camera fixViewPorts:self.view.frame.size.width :self.view.frame.size.height:YES];
     [self updatePlaneVerts:verts_array :camera.viewportWidth/2 - 100 :camera.viewportHeight/2 - 100 :200 :200];
-    color = [[Color alloc] initUsingUIColor:[UIColor redColor]];
+    color = [[Color alloc] initUsingUIColor:[UIColor whiteColor]];
     [self updateColor:color_array : 16: color];
     [self updateTexCoords:tex_coords];
     
@@ -72,7 +74,8 @@
     
     shader = [[ShaderProgram alloc] init:@"vsh" :@"fsh" :@"glsl"];
     mesh = [[Mesh alloc]init:array : shader];
-    
+    modalMatrix = GLKMatrix4Identity;
+   
 }
 
 -(void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
@@ -96,7 +99,10 @@
     [shader begin];
     [texture bind];
     [shader setUniformiWithName:"u_texture" value:1];
-    [shader setUniformMatrixWithName:"combined" withMatrix4:camera.combined transpose:GL_FALSE];
+    
+    GLKMatrix4 transformations = GLKMatrix4Multiply(camera.combined, modalMatrix);
+    
+    [shader setUniformMatrixWithName:"combined" withMatrix4:transformations transpose:GL_FALSE];
     [mesh render:GL_TRIANGLE_FAN];
     
     [shader end];
@@ -108,11 +114,10 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     UITouch *aTouch = [touches anyObject];
     CGPoint point = [aTouch locationInView:self.view];
-    CGRect r = [[UIScreen mainScreen] bounds];
-    NSLog(@"bounds - > %@ touch-> %@", NSStringFromCGRect(r), NSStringFromCGPoint(point));
     GLKVector3 touch = [camera unproject:GLKVector3Make(point.x, point.y, 0)];
-//    NSLog(@"camera-viewport height--> %f --> %f", camera.viewportHeight, touch.y);
-    NSLog(@"touch-> %f x %f x %f", touch.x, touch.y, touch.z);
+    
+    modalMatrix = GLKMatrix4Identity;
+    modalMatrix = GLKMatrix4Translate(modalMatrix, touch.x, camera.viewportHeight - touch.y, touch.z);
 }
 
 
