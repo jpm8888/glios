@@ -72,11 +72,13 @@ const int NO_TEXTURE = 0;
     
     GLuint texName;
     glGenTextures(1, &texName);
-    glBindTexture(GL_TEXTURE_2D, texName);
-    [self setFilter:Linear :Linear];
-    [self setWrap:ClampToEdge :ClampToEdge];
+    [GLUtil checkGlError:"glGenTextures()"];
+    [self bind];
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, self.width, self.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
     [GLUtil checkGlError:"glTexImage2D()"];
+    [self setFilter:Linear :Linear];
+    [self setWrap:ClampToEdge :ClampToEdge];
+    
     free(imageData);
     image = nil;
     return texName;
@@ -129,22 +131,16 @@ const int NO_TEXTURE = 0;
     [self checkPowerofTwo];
 }
 
+-(void) bind{
+    glBindTexture(GL_TEXTURE_2D, textureHandle);
+    [GLUtil checkGlError:"glBindTexture()"];
+}
 
--(void) bind :(GLint) toWhich :(GLint) textureNumber {
-    glActiveTexture(textureNumber);
+-(void) bind : (int) unit{
+    glActiveTexture(GL_TEXTURE0 + unit);
     [GLUtil checkGlError:"glActiveTexture()"];
     glBindTexture(GL_TEXTURE_2D, textureHandle);
     [GLUtil checkGlError:"glBindTexture()"];
-    glUniform1i(toWhich, 0);
-    [GLUtil checkGlError :"glUniform1i()"];
-}
-
--(void) bind{
-    
-}
-
--(void) bind : (GLint) toWhich {
-    [self bind:toWhich :GL_TEXTURE0];
 }
 
 -(BOOL) checkPowerofTwo {

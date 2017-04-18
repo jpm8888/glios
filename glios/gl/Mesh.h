@@ -13,7 +13,7 @@
 
 
 
--(instancetype) init : (NSMutableArray *) attribs;
--(void) render : (ShaderProgram*) program : (GLint) primitiveType;
+-(instancetype) init : (NSMutableArray *) attribs : (ShaderProgram *) shader;
+-(void) render : (GLint) primitiveType;
 -(void) dispose;
 @end

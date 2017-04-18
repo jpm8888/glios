@@ -17,6 +17,7 @@
 @property GLint size; // 2 in case of position, 4 in color etc.
 @property GLint length; // number of vertex
 @property const char *name; // alias
+@property GLint shaderLocation;
 
 
 -(instancetype) init : (GLint) type : (GLint) size : (GLint) length : (GLfloat*) verts : (NSString*) nameInShader;

@@ -12,24 +12,27 @@
 @implementation Mesh{
     NSMutableArray * attributes;
     int vertices_count;
+    ShaderProgram *program;
 }
 
--(instancetype) init : (NSMutableArray *) attribs{
+-(instancetype) init : (NSMutableArray *) attribs : (ShaderProgram *) shader{
     if (!self) self = [super init];
     attributes = attribs;
     VertexAttribute* pos = [attribs objectAtIndex:0];
     vertices_count = pos.length;
+    program = shader;
+    
+    for (VertexAttribute * va in attribs) {
+        va.shaderLocation = [program fetchAttributeLocation:va.name];
+    }
+    
     return self;
 }
 
-
-
-
-
--(void) render : (ShaderProgram*) program : (GLint) primitiveType{
+-(void) render: (GLint) primitiveType{
     for (VertexAttribute* va in attributes) {
-        [program setVertexAttributeWithName:va.name size:va.size type:va.type normalize:GL_FALSE stride:0 data:va.getVertices];
-        [program enableVertexAttributeWithName:va.name];
+        [program setVertexAttributeWithLocation:va.shaderLocation size:va.size type:va.type normalize:GL_FALSE stride:0 data:va.getVertices];
+        [program enableVertexAttributeWithLocation:va.shaderLocation];
     }
     glDrawArrays(primitiveType, 0, vertices_count);
 }
@@ -41,7 +44,5 @@
     [attributes removeAllObjects];
     attributes = nil;
 }
-
-
 
 @end

@@ -58,8 +58,7 @@ typedef enum {
 -(TextureWrap) getvWrap;
 -(void) assignDimensions :(UIImage*) image;
 -(void) bind;
--(void) bind :(GLint) toWhich :(GLint) textureNumber;
--(void) bind : (GLint) toWhich ;
+-(void) bind : (int) unit ;
 -(BOOL) checkPowerofTwo;
 -(void) updateTexture :(UIImage*) image;
 -(GLuint) getTextureHandle;

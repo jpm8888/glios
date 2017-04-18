@@ -131,10 +131,19 @@
 
 -(GLKVector3) project :(GLKVector3) worldCoords :(float) viewportX :(float) viewportY :(float) viewportWidth :(float) viewportHeight {
     worldCoords = GLKMatrix4MultiplyAndProjectVector3(_combined, worldCoords);
+//    worldCoords = [self prj:self.combined :worldCoords];
     worldCoords.x = viewportWidth * (worldCoords.x + 1) / 2 + viewportX;
     worldCoords.y = viewportHeight * (worldCoords.y + 1) / 2 + viewportY;
     worldCoords.z = (worldCoords.z + 1) / 2;
     return worldCoords;
+}
+
+-(GLKVector3) prj : (GLKMatrix4) l_mat : (GLKVector3) r_vec{
+    float l_w = 1.0 / (r_vec.x * l_mat.m30 + r_vec.y * l_mat.m31 + r_vec.z * l_mat.m32 + l_mat.m33);
+    float l_x = (r_vec.x * l_mat.m00 + r_vec.y * l_mat.m01 + r_vec.z * l_mat.m02 + l_mat.m03) * l_w;
+    float l_y =(r_vec.x * l_mat.m10 + r_vec.y * l_mat.m11 + r_vec.z * l_mat.m12 + l_mat.m13) * l_w;
+    float l_z = (r_vec.x * l_mat.m20 + r_vec.y * l_mat.m21 + r_vec.z * l_mat.m22 + l_mat.m23) * l_w;
+    return GLKVector3Make(l_x, l_y, l_z);
 }
 
 -(Ray*) getPickRay :(float) screenX :(float) screenY :(float) viewportX :(float) viewportY :(float) viewportWidth :(float) viewportHeight {

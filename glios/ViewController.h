@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OpenGLView.h"
+#import <GLKit/GLKit.h>
 
-@interface ViewController : UIViewController{
+@interface ViewController : GLKViewController<GLKViewDelegate>{
     
 }
-@property (nonatomic, retain) IBOutlet OpenGLView *glView;
+
 @end
 

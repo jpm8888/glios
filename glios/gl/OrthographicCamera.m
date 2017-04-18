@@ -61,7 +61,7 @@
     self.combined = GLKMatrix4Multiply(self.projection, self.view);
     if (updateFrustum){
         self.invProjectionView = self.combined;
-        GLKMatrix4Invert(self.invProjectionView, nil);
+        self.invProjectionView = GLKMatrix4Invert(self.invProjectionView, nil);
     }
 }
 
@@ -102,6 +102,7 @@
     NSLog(@"%f %f %f %f", mat.m01, mat.m11, mat.m21, mat.m31);
     NSLog(@"%f %f %f %f", mat.m02, mat.m12, mat.m22, mat.m32);
     NSLog(@"%f %f %f %f", mat.m03, mat.m13, mat.m23, mat.m33);
+    NSLog(@"-------------------------------------------------");
 }
 
 
