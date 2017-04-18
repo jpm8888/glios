@@ -16,4 +16,5 @@
 -(instancetype) init : (float) red : (float) green: (float) blue : (float) alpha;
 -(instancetype) initUsingVector3 : (GLKVector3) colors;
 -(instancetype) initUsingUIColor : (UIColor*) color;
+-(instancetype) initUsingHexString : (NSString*) color;
 @end
