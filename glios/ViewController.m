@@ -108,9 +108,10 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     UITouch *aTouch = [touches anyObject];
     CGPoint point = [aTouch locationInView:self.view];
-//    NSLog(@"%@", NSStringFromCGPoint(point));
+    CGRect r = [[UIScreen mainScreen] bounds];
+    NSLog(@"bounds - > %@ touch-> %@", NSStringFromCGRect(r), NSStringFromCGPoint(point));
     GLKVector3 touch = [camera unproject:GLKVector3Make(point.x, point.y, 0)];
-    NSLog(@"camera-viewport height--> %f --> %f", camera.viewportHeight, touch.y);
+//    NSLog(@"camera-viewport height--> %f --> %f", camera.viewportHeight, touch.y);
     NSLog(@"touch-> %f x %f x %f", touch.x, touch.y, touch.z);
 }
 

@@ -120,7 +120,7 @@
 }
 
 -(GLKVector3) unproject :(GLKVector3) screenCoords {
-    screenCoords = [self project :screenCoords :0 :0 :[[UIScreen mainScreen] bounds].size.width:[[UIScreen mainScreen] bounds].size.height];
+    screenCoords = [self unproject: screenCoords :0 :0 :[[UIScreen mainScreen] bounds].size.width:[[UIScreen mainScreen] bounds].size.height];
     return screenCoords;
 }
 
@@ -131,7 +131,6 @@
 
 -(GLKVector3) project :(GLKVector3) worldCoords :(float) viewportX :(float) viewportY :(float) viewportWidth :(float) viewportHeight {
     worldCoords = GLKMatrix4MultiplyAndProjectVector3(_combined, worldCoords);
-//    worldCoords = [self prj:self.combined :worldCoords];
     worldCoords.x = viewportWidth * (worldCoords.x + 1) / 2 + viewportX;
     worldCoords.y = viewportHeight * (worldCoords.y + 1) / 2 + viewportY;
     worldCoords.z = (worldCoords.z + 1) / 2;
