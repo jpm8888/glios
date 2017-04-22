@@ -31,7 +31,7 @@
 
 -(void) render: (GLint) primitiveType{
     for (VertexAttribute* va in attributes) {
-        [program setVertexAttributeWithLocation:va.shaderLocation size:va.size type:va.type normalize:GL_FALSE stride:0 data:va.getVertices];
+        [program setVertexAttributeWithLocation:va.shaderLocation size:va.size type:va.type normalize:GL_FALSE stride:0 data:[va getVertices]];
         [program enableVertexAttributeWithLocation:va.shaderLocation];
     }
     glDrawArrays(primitiveType, 0, vertices_count);

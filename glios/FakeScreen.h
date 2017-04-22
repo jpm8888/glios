@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Texture.h"
 
 @interface FakeScreen : NSObject
 
--(void) render;
+-(void) render : (float) viewX : (float) viewY;
+-(Texture*) getTexture;
 @end

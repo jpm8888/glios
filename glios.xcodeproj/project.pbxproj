@@ -36,6 +36,7 @@
 		D8A90BD31EA0CCF90039518F /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8A90BD21EA0CCF90039518F /* test.jpg */; };
 		D8A90BD61EA4DD010039518F /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A90BD51EA4DD010039518F /* Color.m */; };
 		D8A90BD91EA8BC740039518F /* FakeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A90BD81EA8BC740039518F /* FakeScreen.m */; };
+		D8A90BDF1EAB63470039518F /* Plane2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A90BDE1EAB63470039518F /* Plane2D.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,8 @@
 		D8A90BD51EA4DD010039518F /* Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Color.m; path = gl/Color.m; sourceTree = "<group>"; };
 		D8A90BD71EA8BC740039518F /* FakeScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeScreen.h; sourceTree = "<group>"; };
 		D8A90BD81EA8BC740039518F /* FakeScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeScreen.m; sourceTree = "<group>"; };
+		D8A90BDD1EAB63470039518F /* Plane2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Plane2D.h; path = gl/Plane2D.h; sourceTree = "<group>"; };
+		D8A90BDE1EAB63470039518F /* Plane2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Plane2D.m; path = gl/Plane2D.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +184,8 @@
 				D85EF82B1E94C3DB00308F78 /* Texture.m */,
 				D8A90BC71E9F83710039518F /* VertexAttribute.h */,
 				D8A90BC81E9F83710039518F /* VertexAttribute.m */,
+				D8A90BDD1EAB63470039518F /* Plane2D.h */,
+				D8A90BDE1EAB63470039518F /* Plane2D.m */,
 			);
 			name = gl;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 				D85EF7EE1E94C21300308F78 /* AppDelegate.m in Sources */,
 				D85EF7EB1E94C21300308F78 /* main.m in Sources */,
 				D85EF8351E94C3DB00308F78 /* OrthographicCamera.m in Sources */,
+				D8A90BDF1EAB63470039518F /* Plane2D.m in Sources */,
 				D85EF8391E94C3DB00308F78 /* ShaderProgram.m in Sources */,
 				D85EF8381E94C3DB00308F78 /* Rectangle.m in Sources */,
 				D8A90BB91E9CDA8B0039518F /* Mesh.m in Sources */,

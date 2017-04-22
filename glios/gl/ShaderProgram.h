@@ -21,6 +21,7 @@ extern NSString *const BINORMAL_ATTRIBUTE;
 extern NSString *const BONEWEIGHT_ATTRIBUTE;
 
 -(instancetype) init : (NSString*) vShaderFileName : (NSString*) fShaderFileName : (NSString*) type;
+-(instancetype) init : (NSString*) vshader : (NSString*) fshader;
 
 -(void) begin;
 -(void) end;

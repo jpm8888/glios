@@ -14,14 +14,17 @@
     FrameBuffer *framebuffer;
 }
 
--(void) render{
-    framebuffer = [[FrameBuffer alloc] init:RGBA :512 :512 :NO : 480 : 800];
+-(void) render : (float) viewX : (float) viewY{
+    framebuffer = [[FrameBuffer alloc] init:RGBA :512 :512 :NO : viewX : viewY];
 
     [framebuffer begin];
-        glClearColor(1, 0,0,1);
+        glClearColor(1, 1,0,1);
         glClear(GL_COLOR_BUFFER_BIT);
-    
     [framebuffer end];
+}
+
+-(Texture*)getTexture{
+    return [framebuffer getColorBufferTexture];
 }
 
 @end

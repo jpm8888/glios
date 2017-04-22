@@ -32,11 +32,11 @@
 }
 
 -(void) setFrameBufferViewport {
-    glViewport(0, 0, _defaultViewportWidth, _defaultViewportHeight);
+    glViewport(0, 0, 480, 800);
 }
 
 -(void) setDefaultFrameBufferViewport {
-    glViewport(0, 0, 480, 800);
+    glViewport(0, 0, _defaultViewportWidth, _defaultViewportHeight);
 }
 
 -(void) build {
@@ -45,7 +45,6 @@
     [GLUtil checkGlError:"Framebuffer.build().glGetIntegerv()"];
     
     defaultFrameBufferHandle = dfh[0];
-    NSLog(@"default frame buffer --> %d", defaultFrameBufferHandle);
     [self setupTexture];
     
     glGenFramebuffers(1, &framebufferHandle);

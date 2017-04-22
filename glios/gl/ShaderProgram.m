@@ -33,6 +33,15 @@ GLuint NO_PROGRAM = 0;
     return self;
 }
 
+-(instancetype) init : (NSString*) vshader : (NSString*) fshader{
+    if (!self) self = [super init];
+    program = [self createProgram:[vshader UTF8String] :[fshader UTF8String]];
+    if (program != NO_PROGRAM){
+        [GLUtil LOG:@"ShaderProgram" :[NSString stringWithFormat:@"Program created successfully with pid -> %d", program]];
+    }
+    return self;
+}
+
 -(NSString *) getFileContents : (NSString*) fileName : (NSString*) type{
     NSString* path = [[NSBundle mainBundle] pathForResource:fileName ofType:type];
     NSError* error;
