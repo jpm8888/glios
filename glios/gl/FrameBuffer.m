@@ -10,20 +10,19 @@
 
 @implementation FrameBuffer{
     GLint defaultFrameBufferHandle;
-    GLboolean defaultFramebufferHandleInitialized;
     GLuint framebufferHandle;
-    GLint depthbufferHandle;
+    GLuint depthbufferHandle;
 }
 
 
--(instancetype) init :(Format) format :(int) width :(int) height :(BOOL) hasDepth{
+-(instancetype) init :(Format) format :(int) width :(int) height :(BOOL) hasDepth : (float) viewportWidth : (float) viewportHeight{
     if (!self) self = [super init];
     self.width = width;
     self.height = height;
     self.format = format;
     self.hasDepth = hasDepth;
-    self.defaultViewportWidth = [[UIScreen mainScreen] bounds].size.width;
-    self.defaultViewportHeight = [[UIScreen mainScreen] bounds].size.height;
+    self.defaultViewportWidth = viewportWidth;
+    self.defaultViewportHeight = viewportHeight;
     [self build];
     return self;
 }
@@ -41,19 +40,24 @@
 }
 
 -(void) build {
-    defaultFrameBufferHandle = 0;
-    [self setupTexture];
-    GLuint handle = NO_VALUE;
-    glGenFramebuffers(1, &handle);
+    GLint dfh[1];
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, dfh);
+    [GLUtil checkGlError:"Framebuffer.build().glGetIntegerv()"];
     
-    framebufferHandle = handle;
+    defaultFrameBufferHandle = dfh[0];
+    NSLog(@"default frame buffer --> %d", defaultFrameBufferHandle);
+    [self setupTexture];
+    
+    glGenFramebuffers(1, &framebufferHandle);
+    [GLUtil checkGlError:"Framebuffer.build().glGenFramebuffers()"];
     
     if (_hasDepth) {
-        glGenRenderbuffers(1, &handle);
-        depthbufferHandle = handle;
+        glGenRenderbuffers(1, &depthbufferHandle);
+        [GLUtil checkGlError:"Framebuffer.build().glGenRenderbuffers()"];
     }
     
     glBindTexture(GL_TEXTURE_2D, [_colorTexture getTextureHandle]);
+    [GLUtil checkGlError:"Framebuffer.build().glBindTexture()"];
     
     if (_hasDepth) {
         glBindRenderbuffer(GL_RENDERBUFFER, depthbufferHandle);
@@ -61,30 +65,30 @@
     }
     
     glBindFramebuffer(GL_FRAMEBUFFER, framebufferHandle);
+    [GLUtil checkGlError:"Framebuffer.build().glBindFramebuffer()"];
+    
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, [_colorTexture getTextureHandle], 0);
+    [GLUtil checkGlError:"Framebuffer.build().glFramebufferTexture2D()"];
+    
     if (_hasDepth) {
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthbufferHandle);
     }
     
-    int result = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-    
     glBindRenderbuffer(GL_RENDERBUFFER, 0);
     glBindTexture(GL_TEXTURE_2D, 0);
+    
+    int result = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+    
     glBindFramebuffer(GL_FRAMEBUFFER, defaultFrameBufferHandle);
     
     if (result != GL_FRAMEBUFFER_COMPLETE) {
         [_colorTexture dispose];
-        if (_hasDepth) {
-            handle = depthbufferHandle;
-            glDeleteRenderbuffers(1, &handle);
-        }
-        [_colorTexture dispose];
-        handle = framebufferHandle;
-        glDeleteFramebuffers(1, &handle);
         
-        if (result == GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT){
+        if (_hasDepth) glDeleteRenderbuffers(1, &depthbufferHandle);
+        glDeleteFramebuffers(1, &framebufferHandle);
+        
+        if (result == GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT)
             [GLUtil LOG:@"FrameBuffer" :@"frame buffer couldn't be constructed: incomplete attachment"];
-        }
         if (result == GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS)
             [GLUtil LOG:@"FrameBuffer" :@"frame buffer couldn't be constructed: incomplete dimensions"];
         if (result == GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT)
@@ -99,10 +103,12 @@
 
 -(void) bind {
     glBindFramebuffer(GL_FRAMEBUFFER, framebufferHandle);
+    [GLUtil checkGlError:"FrameBuffer.bind().glBindFramebuffer()"];
 }
 
 -(void) unbind {
     glBindFramebuffer(GL_FRAMEBUFFER, defaultFrameBufferHandle);
+    [GLUtil checkGlError:"FrameBuffer.unbind().glBindFramebuffer()"];
 }
     
 
@@ -110,16 +116,11 @@
     [self setFrameBufferViewport];
     [self bind];
 }
-    
-
-
 
 -(void) end {
     [self setDefaultFrameBufferViewport];
     [self unbind];
 }
-
-
 
 
 -(void) end :(int) x :(int) y :(int) w :(int) h {

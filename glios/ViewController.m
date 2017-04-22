@@ -14,7 +14,8 @@
 #import "GLUtil.h"
 #import "VertexAttribute.h"
 #import "Color.h"
-
+#import "GLMath.h"
+#import "FakeScreen.h"
 @interface ViewController ()
 
 @end
@@ -23,13 +24,14 @@
     GLfloat verts_array[8];
     GLfloat color_array[16];
     GLfloat tex_coords[8];
+    
     OrthographicCamera * camera;
     ShaderProgram *shader;
     Mesh *mesh;
     Texture *texture;
     Color *color;
     
-    GLKMatrix4 modalMatrix;
+    FakeScreen *fakeScreen;
 }
 
 
@@ -49,13 +51,16 @@
 
 }
 
+
+
 -(void) setup{
+    
     NSLog(@"setup()");
     glViewport(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     [GLUtil setDebug:YES];
     camera = [[OrthographicCamera alloc] init:480 :800];
     [camera fixViewPorts:self.view.frame.size.width :self.view.frame.size.height:YES];
-    [self updatePlaneVerts:verts_array :camera.viewportWidth/2 - 100 :camera.viewportHeight/2 - 100 :200 :200];
+    [self updatePlaneVerts:verts_array :0 : 0 :200 :200];
     color = [[Color alloc] initUsingUIColor:[UIColor whiteColor]];
     [self updateColor:color_array : 16: color];
     [self updateTexCoords:tex_coords];
@@ -74,8 +79,13 @@
     
     shader = [[ShaderProgram alloc] init:@"vsh" :@"fsh" :@"glsl"];
     mesh = [[Mesh alloc]init:array : shader];
-    modalMatrix = GLKMatrix4Identity;
+    
    
+}
+
+-(void) setupFakeScreen{
+    fakeScreen = [[FakeScreen alloc] init];
+    [fakeScreen render];
 }
 
 -(void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
@@ -84,6 +94,7 @@
     if (!flag){
         NSLog(@"drawInRect()");
         [self setup];
+        [self setupFakeScreen];
         flag = true;
     }
     
@@ -98,11 +109,8 @@
     
     [shader begin];
     [texture bind];
-    [shader setUniformiWithName:"u_texture" value:1];
-    
-    GLKMatrix4 transformations = GLKMatrix4Multiply(camera.combined, modalMatrix);
-    
-    [shader setUniformMatrixWithName:"combined" withMatrix4:transformations transpose:GL_FALSE];
+    [shader setUniformiWithName:"u_texture" value:0];
+    [shader setUniformMatrixWithName:"combined" withMatrix4:camera.combined transpose:GL_FALSE];
     [mesh render:GL_TRIANGLE_FAN];
     
     [shader end];
@@ -114,11 +122,14 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     UITouch *aTouch = [touches anyObject];
     CGPoint point = [aTouch locationInView:self.view];
-    GLKVector3 touch = [camera unproject:GLKVector3Make(point.x, point.y, 0)];
+//    GLKVector3 touch = [camera unproject:GLKVector3Make(point.x, point.y, 0)];
+//    
+//    modalMatrix = GLKMatrix4Identity;
+//    modalMatrix = GLKMatrix4Translate(modalMatrix, touch.x, camera.viewportHeight - touch.y, 0);
     
-    modalMatrix = GLKMatrix4Identity;
-    modalMatrix = GLKMatrix4Translate(modalMatrix, touch.x, camera.viewportHeight - touch.y, touch.z);
 }
+
+
 
 
 -(void) updateTexCoords : (GLfloat*) t{
