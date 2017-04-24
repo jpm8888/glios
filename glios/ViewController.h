@@ -13,5 +13,9 @@
     
 }
 
+- (IBAction)flipY:(id)sender;
+- (IBAction)flipX:(id)sender;
+- (IBAction)flipXY:(id)sender;
+
 @end
 

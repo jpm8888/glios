@@ -35,7 +35,6 @@
 		D8A90BD11EA0BEB70039518F /* tex.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8A90BD01EA0BEB70039518F /* tex.jpg */; };
 		D8A90BD31EA0CCF90039518F /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8A90BD21EA0CCF90039518F /* test.jpg */; };
 		D8A90BD61EA4DD010039518F /* Color.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A90BD51EA4DD010039518F /* Color.m */; };
-		D8A90BD91EA8BC740039518F /* FakeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A90BD81EA8BC740039518F /* FakeScreen.m */; };
 		D8A90BDF1EAB63470039518F /* Plane2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A90BDE1EAB63470039518F /* Plane2D.m */; };
 /* End PBXBuildFile section */
 
@@ -85,8 +84,6 @@
 		D8A90BD21EA0CCF90039518F /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		D8A90BD41EA4DD010039518F /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Color.h; path = gl/Color.h; sourceTree = "<group>"; };
 		D8A90BD51EA4DD010039518F /* Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Color.m; path = gl/Color.m; sourceTree = "<group>"; };
-		D8A90BD71EA8BC740039518F /* FakeScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeScreen.h; sourceTree = "<group>"; };
-		D8A90BD81EA8BC740039518F /* FakeScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeScreen.m; sourceTree = "<group>"; };
 		D8A90BDD1EAB63470039518F /* Plane2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Plane2D.h; path = gl/Plane2D.h; sourceTree = "<group>"; };
 		D8A90BDE1EAB63470039518F /* Plane2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Plane2D.m; path = gl/Plane2D.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,12 +125,10 @@
 				D85EF8001E94C2B500308F78 /* gl */,
 				D85EF7EC1E94C21300308F78 /* AppDelegate.h */,
 				D85EF7ED1E94C21300308F78 /* AppDelegate.m */,
-				D85EF7EF1E94C21300308F78 /* ViewController.h */,
 				D85EF7F01E94C21300308F78 /* ViewController.m */,
-				D8A90BD71EA8BC740039518F /* FakeScreen.h */,
-				D8A90BD81EA8BC740039518F /* FakeScreen.m */,
 				D85EF7F21E94C21300308F78 /* Main.storyboard */,
 				D85EF7F51E94C21300308F78 /* Assets.xcassets */,
+				D85EF7EF1E94C21300308F78 /* ViewController.h */,
 				D85EF7F71E94C21300308F78 /* LaunchScreen.storyboard */,
 				D85EF7FA1E94C21300308F78 /* Info.plist */,
 				D85EF7E91E94C21300308F78 /* Supporting Files */,
@@ -282,7 +277,6 @@
 				D85EF8301E94C3DB00308F78 /* Camera.m in Sources */,
 				D85EF7F11E94C21300308F78 /* ViewController.m in Sources */,
 				D8A90BD61EA4DD010039518F /* Color.m in Sources */,
-				D8A90BD91EA8BC740039518F /* FakeScreen.m in Sources */,
 				D85EF8311E94C3DB00308F78 /* Circle.m in Sources */,
 				D85EF8321E94C3DB00308F78 /* FrameBuffer.m in Sources */,
 				D85EF8341E94C3DB00308F78 /* GLUtil.m in Sources */,

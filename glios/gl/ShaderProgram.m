@@ -10,7 +10,9 @@
 
 @implementation ShaderProgram {
     GLuint program;
+    
 }
+static ShaderProgram *defaultShader;
 
 NSString *const POSITION_ATTRIBUTE = @"a_position";
 NSString *const NORMAL_ATTRIBUTE = @"a_normal";
@@ -40,6 +42,35 @@ GLuint NO_PROGRAM = 0;
         [GLUtil LOG:@"ShaderProgram" :[NSString stringWithFormat:@"Program created successfully with pid -> %d", program]];
     }
     return self;
+}
+
++(ShaderProgram*) getDefaultShader{
+    if (defaultShader) return defaultShader;
+    NSString *defaultVertexShader = [NSString stringWithFormat:@"attribute vec4 a_pos; \n"
+                                     "attribute vec2 a_tex;\n"
+                                     "attribute vec4 a_color;\n"
+                                     "uniform mat4 combined;\n"
+                                     "varying vec2 v_tex;\n"
+                                     "varying vec4 v_color;\n"
+                                     "void main(void) {\n"
+                                     "v_color = a_color;\n"
+                                     "v_tex = a_tex;\n"
+                                     "gl_Position = combined * a_pos;\n"
+                                     "}\n" ];
+    
+    NSString *defaultFragmentShader = [NSString stringWithFormat:@"#ifdef GL_ES\n"
+                                       "precision mediump float;\n"
+                                       "#endif\n"
+                                       "varying vec2 v_tex;\n"
+                                       "varying vec4 v_color;\n"
+                                       "uniform sampler2D u_texture;\n"
+                                       "void main(void) {\n"
+                                       "gl_FragColor =  v_color * texture2D(u_texture, v_tex);\n"
+                                       "}\n"];
+    
+    defaultShader = [[ShaderProgram alloc] init:defaultVertexShader :defaultFragmentShader];
+    NSLog(@"creating default shader");
+    return defaultShader;
 }
 
 -(NSString *) getFileContents : (NSString*) fileName : (NSString*) type{

@@ -18,31 +18,60 @@
     Texture *texture;
     Color *colorLeftTop, *colorLeftBottom, *colorRightTop, *colorRightBottom;
     
-    GLKVector2 pos;
-    GLKVector2 size;
+    GLKMatrix4 scaleMat;
+    GLKMatrix4 rotationMat;
+    GLKMatrix4 translateMat;
+    
+    GLKVector2 size, pos;
+    GLKVector2 origin;
     GLfloat *vertices;
     GLfloat *color;
     GLfloat *texCoords;
     Rectangle * bounds;
-    BOOL dirty;
+    BOOL flippedX, flippedY;
 }
 
 -(instancetype) init : (float) x : (float) y : (float) w : (float) h : (Texture*) tex{
     if (!self) self = [super init];
     texture = tex;
-    dirty = true;
-    vertices = (GLfloat*) calloc(2 * 4, sizeof(GLfloat));
-    color = (GLfloat*) calloc(4 * 4, sizeof(GLfloat));
-    texCoords = (GLfloat*) calloc(2 * 4, sizeof(GLfloat));
-    [self setPosition: x : y];
-    [self setSize: w :h];
-    
+    pos = GLKVector2Make(x, y);
+    size = GLKVector2Make(w, h);
+    origin = GLKVector2Make(size.x / 2.0, size.y / 2.0);
     bounds = [[Rectangle alloc] init:x :y :w :h];
     [self setupMesh];
     return self;
 }
 
+
+-(void) translateTo : (float) tx : (float) ty{
+    translateMat = GLKMatrix4MakeTranslation(tx, ty, 0);
+}
+
+-(void) scaleTo : (float) scl{
+    scaleMat = GLKMatrix4MakeScale(scl, scl, 0);
+}
+
+-(void) rotateTo : (float) rot{
+    rotationMat = GLKMatrix4Translate(rotationMat, origin.x, origin.y, 0);
+    rotationMat  = GLKMatrix4MakeRotation(rot, 0, 0, 1);
+    rotationMat = GLKMatrix4Translate(rotationMat, -origin.x, -origin.y, 0);
+}
+
+
 -(void) setupMesh{
+    colorLeftTop = [[Color alloc] init:1 :1 :1 :1];
+    colorLeftBottom = [[Color alloc] init:1 :1 :1 :1];
+    colorRightTop = [[Color alloc] init:1 :1 :1 :1];
+    colorRightBottom = [[Color alloc] init:1 :1 :1 :1];
+    
+    vertices = (GLfloat*) calloc(2 * 4, sizeof(GLfloat));
+    color = (GLfloat*) calloc(4 * 4, sizeof(GLfloat));
+    texCoords = (GLfloat*) calloc(2 * 4, sizeof(GLfloat));
+    
+    [self initVertices];
+    [self initColor];
+    [self initTexCoords];
+    
     VertexAttribute *posAttrib = [[VertexAttribute alloc] init:GL_FLOAT :2 :8 :vertices :@"a_pos"];
     VertexAttribute *colorAttrib = [[VertexAttribute alloc] init:GL_FLOAT :4 :16 :color :@"a_color"];
     VertexAttribute *texCoordsAttrib = [[VertexAttribute alloc] init:GL_FLOAT :2 :8 :texCoords :@"a_tex"];
@@ -52,76 +81,25 @@
     [array addObject:texCoordsAttrib];
     
     
-    NSString *defaultVertexShader = [NSString stringWithFormat:@"attribute vec4 a_pos; \n"
-                                                                "attribute vec2 a_tex;\n"
-                                                                "attribute vec4 a_color;\n"
-                                                                "uniform mat4 combined;\n"
-                                                                "varying vec2 v_tex;\n"
-                                                                "varying vec4 v_color;\n"
-                                                                "void main(void) {\n"
-                                                                "v_color = a_color;\n"
-                                                                "v_tex = a_tex;\n"
-                                                                "gl_Position = combined * a_pos;\n"
-                                                                "}\n" ];
-    
-    NSString *defaultFragmentShader = [NSString stringWithFormat:@"#ifdef GL_ES\n"
-                                                "precision mediump float;\n"
-                                                "#endif\n"
-                                                "varying vec2 v_tex;\n"
-                                                "varying vec4 v_color;\n"
-                                                "uniform sampler2D u_texture;\n"
-                                                "void main(void) {\n"
-                                                "gl_FragColor =  v_color * texture2D(u_texture, v_tex);\n"
-                                       "}\n"];
-    
-    shader = [[ShaderProgram alloc] init:defaultVertexShader :defaultFragmentShader];
+    shader = [ShaderProgram getDefaultShader];
     mesh = [[Mesh alloc] init:array :shader];
     
-    colorLeftTop = [[Color alloc] init:1 :1 :1 :1];
-    colorLeftBottom = [[Color alloc] init:1 :1 :1 :1];
-    colorRightTop = [[Color alloc] init:1 :1 :1 :1];
-    colorRightBottom = [[Color alloc] init:1 :1 :1 :1];
-    
+    [self scaleTo:1];
+    [self rotateTo:GLKMathDegreesToRadians(0)];
+    [self translateTo:pos.x : pos.y];
 }
 
 
 -(void) render : (GLKMatrix4) matrix{
-    if (dirty) [self update];
     [shader enableBlending];
     [shader begin];
         [texture bind];
-        [shader setUniformMatrixWithName:"combined" withMatrix4:matrix transpose:GL_FALSE];
+        GLKMatrix4 transformations = GLKMatrix4Multiply(translateMat, scaleMat); // T * S
+        transformations = GLKMatrix4Multiply(transformations, rotationMat); // T * S * R
+        transformations = GLKMatrix4Multiply(matrix, transformations); // T * S * R * Combined
+        [shader setUniformMatrixWithName:"combined" withMatrix4:transformations transpose:GL_FALSE];
         [mesh render:GL_TRIANGLE_FAN];
     [shader end];
-}
-
--(GLKVector2) getPosition{
-    return pos;
-}
-
--(float) getPositionX{
-    return pos.x;
-}
-
--(float) getPositionY{
-    return pos.y;
-}
-
--(void) setPositionX : (float) x{
-    [self setPosition: GLKVector2Make(x, [self getPositionY])];
-}
-
--(void) setPositionY : (float) y{
-    [self setPosition:GLKVector2Make([self getPositionX], y)];
-}
-
--(void) setPosition : (float) x : (float) y{
-    [self setPosition:GLKVector2Make(x, y)];
-}
-
--(void) setPosition : (GLKVector2) vec{
-    dirty = true;
-    pos = vec;
 }
 
 -(GLKVector2) getSize{
@@ -136,29 +114,12 @@
     return size.y;
 }
 
--(void) setWidth : (float) w{
-    [self setSize: GLKVector2Make(w, [self getHeight])];
-}
-
--(void) setHeight : (float) h{
-    [self setSize: GLKVector2Make([self getWidth], h)];
-}
-
--(void) setSize : (float) w : (float) h{
-    [self setSize:GLKVector2Make(w, h)];
-}
-
--(void) setSize : (GLKVector2) vec{
-    dirty = true;
-    size = vec;
-}
-
 -(void) setColor : (Color*) lb : (Color*) lt : (Color*) rb : (Color*) rt{
     colorLeftBottom = lb;
     colorLeftTop = lt;
     colorRightBottom = rb;
     colorRightTop = rt;
-    dirty = true;
+    [self initColor];
 }
 
 -(void) setTexture : (Texture*) tex{
@@ -166,15 +127,7 @@
     texture = tex;
 }
 
--(void) update{
-    if (!dirty) return;
-    [self updateVertices];
-    [self updateTexCoords];
-    [self updateColor];
-    dirty = false;
-}
-
--(void) updateVertices{
+-(void) initVertices{
     int idx = 0;
     vertices[idx++] = pos.x;
     vertices[idx++] = pos.y;
@@ -187,7 +140,7 @@
     [bounds set:pos.x :pos.y :size.x :size.y];
 }
 
--(void) updateTexCoords{
+-(void) initTexCoords{
     int idx = 0;
     texCoords[idx++] = 0;
     texCoords[idx++] = 1;
@@ -202,7 +155,23 @@
     texCoords[idx++] = 1;
 }
 
--(void) updateColor{
+-(void) flipX{
+    for (int i = 0; i < 8; i++) {
+        if (i % 2 == 0){
+            texCoords[i] = 1 - texCoords[i];
+        }
+    }
+}
+
+-(void) flipY{
+    for (int i = 0; i < 8; i++) {
+        if (i % 2 != 0){
+            texCoords[i] = 1 - texCoords[i];
+        }
+    }
+}
+
+-(void) initColor{
     int idx = 0;
     color[idx++] = colorLeftBottom.r;
     color[idx++] = colorLeftBottom.g;
@@ -239,7 +208,6 @@
     free(vertices);
     free(color);
     free(texCoords);
-    [shader dispose];
 }
 
 

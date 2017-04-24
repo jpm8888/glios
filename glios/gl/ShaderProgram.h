@@ -22,7 +22,7 @@ extern NSString *const BONEWEIGHT_ATTRIBUTE;
 
 -(instancetype) init : (NSString*) vShaderFileName : (NSString*) fShaderFileName : (NSString*) type;
 -(instancetype) init : (NSString*) vshader : (NSString*) fshader;
-
++(ShaderProgram*) getDefaultShader;
 -(void) begin;
 -(void) end;
 -(void) dispose;

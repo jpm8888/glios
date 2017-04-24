@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,6 +19,55 @@
                     <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="Szy-gU-Nwh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qw1-se-iZw">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bju-Ya-M51">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="60"/>
+                                        <state key="normal" title="FlipX"/>
+                                        <connections>
+                                            <action selector="flipX:" destination="SeC-2X-M0f" eventType="touchUpInside" id="rZA-Zz-DNT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKO-cz-Pf9">
+                                        <rect key="frame" x="125" y="0.0" width="125" height="60"/>
+                                        <state key="normal" title="FlipY"/>
+                                        <connections>
+                                            <action selector="flipY:" destination="SeC-2X-M0f" eventType="touchUpInside" id="vSI-db-fjr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZv-jI-C7C">
+                                        <rect key="frame" x="250" y="0.0" width="125" height="60"/>
+                                        <state key="normal" title="flipXY"/>
+                                        <connections>
+                                            <action selector="flipXY:" destination="SeC-2X-M0f" eventType="touchUpInside" id="Lc4-dt-YKT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="MKO-cz-Pf9" firstAttribute="width" secondItem="bju-Ya-M51" secondAttribute="width" id="5aT-Uo-S02"/>
+                                    <constraint firstItem="MKO-cz-Pf9" firstAttribute="top" secondItem="qw1-se-iZw" secondAttribute="top" id="68z-hi-LUc"/>
+                                    <constraint firstAttribute="bottom" secondItem="mZv-jI-C7C" secondAttribute="bottom" id="6Nx-2g-Hsb"/>
+                                    <constraint firstItem="mZv-jI-C7C" firstAttribute="leading" secondItem="MKO-cz-Pf9" secondAttribute="trailing" id="CcD-fZ-rpw"/>
+                                    <constraint firstItem="mZv-jI-C7C" firstAttribute="top" secondItem="qw1-se-iZw" secondAttribute="top" id="DKH-h5-PpI"/>
+                                    <constraint firstItem="mZv-jI-C7C" firstAttribute="width" secondItem="bju-Ya-M51" secondAttribute="width" id="FQS-eA-rFA"/>
+                                    <constraint firstItem="MKO-cz-Pf9" firstAttribute="leading" secondItem="bju-Ya-M51" secondAttribute="trailing" id="IE7-wB-Hnc"/>
+                                    <constraint firstItem="bju-Ya-M51" firstAttribute="leading" secondItem="qw1-se-iZw" secondAttribute="leading" id="MXZ-rM-iQR"/>
+                                    <constraint firstAttribute="bottom" secondItem="MKO-cz-Pf9" secondAttribute="bottom" id="Obc-Ko-7yS"/>
+                                    <constraint firstAttribute="bottom" secondItem="bju-Ya-M51" secondAttribute="bottom" id="Scc-m8-tnm"/>
+                                    <constraint firstAttribute="height" constant="60" id="bh9-BR-lPo"/>
+                                    <constraint firstItem="bju-Ya-M51" firstAttribute="top" secondItem="qw1-se-iZw" secondAttribute="top" id="iYQ-aW-ZIy"/>
+                                    <constraint firstAttribute="trailing" secondItem="mZv-jI-C7C" secondAttribute="trailing" id="rFJ-Cs-R8x"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qw1-se-iZw" secondAttribute="trailing" id="Owd-oc-JaI"/>
+                            <constraint firstItem="uoZ-lC-yzt" firstAttribute="top" secondItem="qw1-se-iZw" secondAttribute="bottom" id="evR-Ho-o86"/>
+                            <constraint firstItem="qw1-se-iZw" firstAttribute="leading" secondItem="Szy-gU-Nwh" secondAttribute="leading" id="kTy-4k-i72"/>
+                        </constraints>
                         <connections>
                             <outlet property="delegate" destination="SeC-2X-M0f" id="dOf-to-bkl"/>
                         </connections>

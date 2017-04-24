@@ -32,7 +32,7 @@
 }
 
 -(void) setFrameBufferViewport {
-    glViewport(0, 0, 480, 800);
+    glViewport(0, 0, _width, _height);
 }
 
 -(void) setDefaultFrameBufferViewport {

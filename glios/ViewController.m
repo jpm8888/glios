@@ -10,6 +10,7 @@
 #import "Texture.h"
 #import "Plane2D.h"
 #import "OrthographicCamera.h"
+#import "FrameBuffer.h"
 
 @interface ViewController ()
 
@@ -17,9 +18,10 @@
 
 @implementation ViewController{
     OrthographicCamera * camera;
-    Plane2D *plane;
-    Plane2D *plane2;
+    Plane2D *plane, *fboPlane;
     Texture *texture;
+    FrameBuffer * fbo;
+    NSMutableArray * planes;
 }
 
 
@@ -42,7 +44,6 @@
 
 
 -(void) setup{
-    
     NSLog(@"setup()");
     glViewport(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     [GLUtil setDebug:YES];
@@ -51,15 +52,36 @@
     
     Texture *tex = [[Texture alloc] initUsingFilePath:@"test.jpg"];
     plane = [[Plane2D alloc] init:0 :0 :100 :100 : tex];
-    Color *red = [[Color alloc] init:1 :0 :0 :1];
-    Color *green = [[Color alloc] init:0 :1 :0 :1];
-    Color *white = [[Color alloc] init:1 :1 :1 :1];
-    Color *blue = [[Color alloc] init:0 :0 :1 :1];
+//    [plane translateTo:150 :150];
+//    [plane translateTo:100 :100];
+//    [plane rotateTo:GLKMathDegreesToRadians(45)];
+//    [plane flipY];
     
-    [plane setColor: red : green : blue : white];
+    fbo = [[FrameBuffer alloc] init:RGBA :200 :200 : NO :self.view.frame.size.width : self.view.frame.size.height];
     
-    plane2 = [[Plane2D alloc] init:100 :100 :100 :100 : tex];
-   
+    [fbo begin];
+    OrthographicCamera *fbocam = [[OrthographicCamera alloc] init:200 :200];
+//    [fbocam setToOrtho:NO : 200 : 200];
+    [fbocam fixViewPorts:200 :200 :YES];
+    
+    NSLog(@"fbocam %f x %f", fbocam.viewportWidth, fbocam.viewportHeight);
+    [fbocam update];
+        glClearColor(1,0, 0, 1);
+        glClear(GL_COLOR_BUFFER_BIT);
+        Texture *tx = [[Texture alloc] initUsingFilePath:@"test.jpg"];
+        Plane2D *pl = [[Plane2D alloc] init:0 :0 :200 :200 : tx];
+    
+        [pl render:fbocam.combined];
+    [fbo end];
+    
+    fboPlane = [[Plane2D alloc] init: 0 : 0 : 200 : 200 : [fbo getColorBufferTexture]];
+    
+    
+}
+
+-(int) getrand:(int)lowerBound : (int) upperBound{
+    int rndValue = lowerBound + arc4random() % (upperBound - lowerBound);
+    return rndValue;
 }
 
 -(void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
@@ -77,11 +99,13 @@
 
 
 -(void) render{
+    
     glClearColor(0.5f,0.5f,0.5f,0.5f);
     glClear(GL_COLOR_BUFFER_BIT);
     [camera update];
+
     [plane render:camera.combined];
-    [plane2 render:camera.combined];
+    
 }
 
 
@@ -92,15 +116,27 @@
     CGPoint point = [aTouch locationInView:self.view];
     GLKVector3 touch = [camera unproject:GLKVector3Make(point.x, point.y, 0)];
     
-    [plane setPosition:touch.x : camera.viewportHeight - touch.y];
-//
-//    modalMatrix = GLKMatrix4Identity;
-//    modalMatrix = GLKMatrix4Translate(modalMatrix, touch.x, camera.viewportHeight - touch.y, 0);
-    
+    [plane translateTo:touch.x : camera.viewportHeight - touch.y];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+- (void)rotate{
+    static int angle = 5;
+    [plane rotateTo:GLKMathDegreesToRadians(angle+=5)];
+}
+
+- (IBAction)flipY:(id)sender {
+    [plane flipY];
+}
+
+- (IBAction)flipX:(id)sender {
+    [plane flipX];
+}
+
+- (IBAction)flipXY:(id)sender {
+    [self rotate];
+}
 @end
