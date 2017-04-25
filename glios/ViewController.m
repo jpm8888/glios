@@ -52,30 +52,27 @@
     
     Texture *tex = [[Texture alloc] initUsingFilePath:@"test.jpg"];
     plane = [[Plane2D alloc] init:0 :0 :100 :100 : tex];
-//    [plane translateTo:150 :150];
-//    [plane translateTo:100 :100];
-//    [plane rotateTo:GLKMathDegreesToRadians(45)];
-//    [plane flipY];
     
     fbo = [[FrameBuffer alloc] init:RGBA :200 :200 : NO :self.view.frame.size.width : self.view.frame.size.height];
     
     [fbo begin];
     OrthographicCamera *fbocam = [[OrthographicCamera alloc] init:200 :200];
-//    [fbocam setToOrtho:NO : 200 : 200];
     [fbocam fixViewPorts:200 :200 :YES];
-    
     NSLog(@"fbocam %f x %f", fbocam.viewportWidth, fbocam.viewportHeight);
     [fbocam update];
         glClearColor(1,0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
         Texture *tx = [[Texture alloc] initUsingFilePath:@"test.jpg"];
         Plane2D *pl = [[Plane2D alloc] init:0 :0 :200 :200 : tx];
-    
+    [pl translateTo:100 :100];
         [pl render:fbocam.combined];
+    
+    UIImage * img = [GLUtil getUIImage:100 :100];
     [fbo end];
     
-    fboPlane = [[Plane2D alloc] init: 0 : 0 : 200 : 200 : [fbo getColorBufferTexture]];
-    
+    Texture *ttt = [[Texture alloc] init:img];
+    fboPlane = [[Plane2D alloc] init: 0 : 100 : 200 : 200 : ttt];
+    [fboPlane translateTo:100 :100];
     
 }
 
@@ -105,6 +102,7 @@
     [camera update];
 
     [plane render:camera.combined];
+    [fboPlane render:camera.combined];
     
 }
 

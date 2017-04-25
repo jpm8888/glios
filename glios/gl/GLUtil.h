@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
+#import <UIKit/UIKit.h>
 
 @interface GLUtil : NSObject{
     
@@ -18,5 +19,5 @@
 +(void) checkGlError :(const char*) op;
 +(void) printGLString :(const char *) name :(GLenum) s;
 +(void) LOG :(NSString*) TAG :(NSString *) msg;
-
++(UIImage*) getUIImage : (int) width : (int) height;
 @end

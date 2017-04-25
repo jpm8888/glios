@@ -35,4 +35,44 @@ static BOOL debug = NO;
     debug = val;
 }
 
++(UIImage*) getUIImage : (int) width : (int) height{
+    int backingWidth = width;
+    int backingHeight = height;
+    GLubyte *buffer = (GLubyte *) malloc(backingWidth * backingHeight * 4);
+    GLubyte *buffer2 = (GLubyte *) malloc(backingWidth * backingHeight * 4);
+//    GLvoid *pixel_data = nil;
+    glReadPixels(0, 0, backingWidth, backingHeight, GL_RGBA, GL_UNSIGNED_BYTE,
+                 (GLvoid *)buffer);
+    for (int y = 0; y < backingHeight; y++) {
+        for (int x = 0; x < backingWidth * 4; x++) {
+            buffer2[y * 4 * backingWidth + x] = buffer[(backingHeight - y - 1) * backingWidth * 4 + x];
+        }
+    }
+    CGDataProviderRef provider;
+    provider = CGDataProviderCreateWithData(NULL, buffer2, backingWidth * backingHeight * 4, releaseBufferData);
+    // set up for CGImage creation
+    int bitsPerComponent = 8;
+    int bitsPerPixel = 32;
+    int bytesPerRow = 4 * backingWidth;
+    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
+    CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault;
+    // Use this to retain alpha
+    //CGBitmapInfo bitmapInfo = kCGImageAlphaPremultipliedLast;
+    CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
+    CGImageRef imageRef = CGImageCreate(backingWidth, backingHeight,
+                                        bitsPerComponent, bitsPerPixel,
+                                        bytesPerRow, colorSpaceRef,
+                                        bitmapInfo, provider,
+                                        NULL, NO,
+                                        renderingIntent);
+    // this contains our final image.
+    UIImage *newUIImage = [UIImage imageWithCGImage:imageRef];
+    return newUIImage;
+}
+
+void releaseBufferData(void *info, const void *data, size_t size){
+    free((void*)data);
+}
+
+
 @end
