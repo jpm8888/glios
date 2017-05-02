@@ -56,9 +56,14 @@
     [background translateTo:100 :100];
     
     
+    NSArray *overlay = @[@"04image.png", @"19image.png"];
+    NSArray *mask = @[@"04white.png", @"19white.png"];
+    
+    int index = 1;
+    
     UIImage *bImage = [UIImage imageNamed:@"zooey.jpg"];
-    UIImage *oImage = [UIImage imageNamed:@"clock.png"];
-    UIImage *mImage = [UIImage imageNamed:@"clock_mask_black.jpg"];
+    UIImage *oImage = [UIImage imageNamed:[overlay objectAtIndex:index]];
+    UIImage *mImage = [UIImage imageNamed:[mask objectAtIndex:index]];
     
     blendTexture = [[BlendTexture alloc] init:bImage :oImage :mImage];
 }
@@ -83,15 +88,17 @@
     CGPoint point = [touch locationInView:glkview];
     GLKVector3 points = GLKVector3Make(point.x, point.y, 0);
     points = [camera unproject:points :0 :0 :glkview.frame.size.width :glkview.frame.size.height];
-    
-    
+    NSLog(@"%f x %f", points.x, camera.viewportHeight - points.y);
+    [blendTexture move:points.x : camera.viewportHeight - points.y];
     
     [glkview setNeedsDisplay];
 }
 
 -(void) render{
     [camera update];
+    [background enableBlending];
     [background render:camera.combined];
+    
     [blendTexture render : camera.combined];
 }
 

@@ -11,13 +11,17 @@
 		D82810031EB7139600E1770B /* BlendTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = D82810021EB7139600E1770B /* BlendTexture.m */; };
 		D828100A1EB713B900E1770B /* blendfsh.glsl in Resources */ = {isa = PBXBuildFile; fileRef = D82810041EB713B900E1770B /* blendfsh.glsl */; };
 		D828100B1EB713B900E1770B /* blendvsh.glsl in Resources */ = {isa = PBXBuildFile; fileRef = D82810051EB713B900E1770B /* blendvsh.glsl */; };
-		D828100C1EB713B900E1770B /* clock_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = D82810061EB713B900E1770B /* clock_mask.png */; };
 		D828100D1EB713B900E1770B /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = D82810071EB713B900E1770B /* clock.png */; };
 		D828100E1EB713B900E1770B /* red-texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D82810081EB713B900E1770B /* red-texture.jpg */; };
 		D828100F1EB713B900E1770B /* zooey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D82810091EB713B900E1770B /* zooey.jpg */; };
 		D82810121EB7152800E1770B /* Plane.m in Sources */ = {isa = PBXBuildFile; fileRef = D82810111EB7152800E1770B /* Plane.m */; };
 		D82810141EB741E400E1770B /* clock_mask_white.png in Resources */ = {isa = PBXBuildFile; fileRef = D82810131EB741E400E1770B /* clock_mask_white.png */; };
-		D82810181EB7432900E1770B /* clock_mask_black.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D82810171EB7432900E1770B /* clock_mask_black.jpg */; };
+		D828101F1EB8B68F00E1770B /* 04image.png in Resources */ = {isa = PBXBuildFile; fileRef = D82810191EB8B68F00E1770B /* 04image.png */; };
+		D82810201EB8B68F00E1770B /* 04white.png in Resources */ = {isa = PBXBuildFile; fileRef = D828101A1EB8B68F00E1770B /* 04white.png */; };
+		D82810211EB8B68F00E1770B /* 05image.png in Resources */ = {isa = PBXBuildFile; fileRef = D828101B1EB8B68F00E1770B /* 05image.png */; };
+		D82810221EB8B68F00E1770B /* 05white.png in Resources */ = {isa = PBXBuildFile; fileRef = D828101C1EB8B68F00E1770B /* 05white.png */; };
+		D82810231EB8B68F00E1770B /* 19image.png in Resources */ = {isa = PBXBuildFile; fileRef = D828101D1EB8B68F00E1770B /* 19image.png */; };
+		D82810241EB8B68F00E1770B /* 19white.png in Resources */ = {isa = PBXBuildFile; fileRef = D828101E1EB8B68F00E1770B /* 19white.png */; };
 		D85EF7EB1E94C21300308F78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF7EA1E94C21300308F78 /* main.m */; };
 		D85EF7EE1E94C21300308F78 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF7ED1E94C21300308F78 /* AppDelegate.m */; };
 		D85EF7F11E94C21300308F78 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D85EF7F01E94C21300308F78 /* ViewController.m */; };
@@ -56,14 +60,18 @@
 		D82810021EB7139600E1770B /* BlendTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlendTexture.m; path = "blend-vc/BlendTexture.m"; sourceTree = "<group>"; };
 		D82810041EB713B900E1770B /* blendfsh.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = blendfsh.glsl; path = "blend-vc/blendfsh.glsl"; sourceTree = "<group>"; };
 		D82810051EB713B900E1770B /* blendvsh.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = blendvsh.glsl; path = "blend-vc/blendvsh.glsl"; sourceTree = "<group>"; };
-		D82810061EB713B900E1770B /* clock_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clock_mask.png; path = "blend-vc/clock_mask.png"; sourceTree = "<group>"; };
 		D82810071EB713B900E1770B /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clock.png; path = "blend-vc/clock.png"; sourceTree = "<group>"; };
 		D82810081EB713B900E1770B /* red-texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "red-texture.jpg"; path = "blend-vc/red-texture.jpg"; sourceTree = "<group>"; };
 		D82810091EB713B900E1770B /* zooey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = zooey.jpg; path = "blend-vc/zooey.jpg"; sourceTree = "<group>"; };
 		D82810101EB7152800E1770B /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Plane.h; path = gl/Plane.h; sourceTree = "<group>"; };
 		D82810111EB7152800E1770B /* Plane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Plane.m; path = gl/Plane.m; sourceTree = "<group>"; };
 		D82810131EB741E400E1770B /* clock_mask_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clock_mask_white.png; path = "blend-vc/clock_mask_white.png"; sourceTree = "<group>"; };
-		D82810171EB7432900E1770B /* clock_mask_black.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = clock_mask_black.jpg; path = "blend-vc/clock_mask_black.jpg"; sourceTree = "<group>"; };
+		D82810191EB8B68F00E1770B /* 04image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 04image.png; path = "blend-vc/04image.png"; sourceTree = "<group>"; };
+		D828101A1EB8B68F00E1770B /* 04white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 04white.png; path = "blend-vc/04white.png"; sourceTree = "<group>"; };
+		D828101B1EB8B68F00E1770B /* 05image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 05image.png; path = "blend-vc/05image.png"; sourceTree = "<group>"; };
+		D828101C1EB8B68F00E1770B /* 05white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 05white.png; path = "blend-vc/05white.png"; sourceTree = "<group>"; };
+		D828101D1EB8B68F00E1770B /* 19image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 19image.png; path = "blend-vc/19image.png"; sourceTree = "<group>"; };
+		D828101E1EB8B68F00E1770B /* 19white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 19white.png; path = "blend-vc/19white.png"; sourceTree = "<group>"; };
 		D85EF7E61E94C21300308F78 /* glios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = glios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85EF7EA1E94C21300308F78 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D85EF7EC1E94C21300308F78 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -136,9 +144,13 @@
 				D82810021EB7139600E1770B /* BlendTexture.m */,
 				D82810041EB713B900E1770B /* blendfsh.glsl */,
 				D82810051EB713B900E1770B /* blendvsh.glsl */,
+				D82810191EB8B68F00E1770B /* 04image.png */,
+				D828101A1EB8B68F00E1770B /* 04white.png */,
+				D828101B1EB8B68F00E1770B /* 05image.png */,
+				D828101C1EB8B68F00E1770B /* 05white.png */,
+				D828101D1EB8B68F00E1770B /* 19image.png */,
+				D828101E1EB8B68F00E1770B /* 19white.png */,
 				D82810091EB713B900E1770B /* zooey.jpg */,
-				D82810061EB713B900E1770B /* clock_mask.png */,
-				D82810171EB7432900E1770B /* clock_mask_black.jpg */,
 				D82810131EB741E400E1770B /* clock_mask_white.png */,
 				D82810071EB713B900E1770B /* clock.png */,
 				D82810081EB713B900E1770B /* red-texture.jpg */,
@@ -301,23 +313,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D828100C1EB713B900E1770B /* clock_mask.png in Resources */,
 				D85EF7F91E94C21300308F78 /* LaunchScreen.storyboard in Resources */,
 				D8A90BCF1EA0B66E0039518F /* image_big.png in Resources */,
 				D8A90BC61E9F63C00039518F /* fsh.glsl in Resources */,
+				D82810241EB8B68F00E1770B /* 19white.png in Resources */,
 				D8A90BC41E9F63AB0039518F /* vsh.glsl in Resources */,
 				D8A90BD31EA0CCF90039518F /* test.jpg in Resources */,
+				D828101F1EB8B68F00E1770B /* 04image.png in Resources */,
 				D828100B1EB713B900E1770B /* blendvsh.glsl in Resources */,
 				D828100A1EB713B900E1770B /* blendfsh.glsl in Resources */,
-				D82810181EB7432900E1770B /* clock_mask_black.jpg in Resources */,
 				D8A90BCD1EA0B6670039518F /* img_small.png in Resources */,
 				D8A90BD11EA0BEB70039518F /* tex.jpg in Resources */,
 				D828100F1EB713B900E1770B /* zooey.jpg in Resources */,
+				D82810231EB8B68F00E1770B /* 19image.png in Resources */,
 				D85EF7F61E94C21300308F78 /* Assets.xcassets in Resources */,
+				D82810211EB8B68F00E1770B /* 05image.png in Resources */,
+				D82810221EB8B68F00E1770B /* 05white.png in Resources */,
 				D85EF7F41E94C21300308F78 /* Main.storyboard in Resources */,
 				D828100D1EB713B900E1770B /* clock.png in Resources */,
 				D82810141EB741E400E1770B /* clock_mask_white.png in Resources */,
 				D828100E1EB713B900E1770B /* red-texture.jpg in Resources */,
+				D82810201EB8B68F00E1770B /* 04white.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

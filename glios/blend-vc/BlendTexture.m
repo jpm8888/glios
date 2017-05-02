@@ -7,7 +7,6 @@
 //
 
 #import "BlendTexture.h"
-#import "Mesh.h"
 #import "Texture.h"
 #import "VertexAttribute.h"
 #import "Texture.h"
@@ -18,7 +17,6 @@
 @implementation BlendTexture{
     Plane2D *finalPlane;
     
-    Mesh *mesh;
     Plane2D *bPlane, *oPlane, *mPlane;
     Texture *bTexture, *oTexture, *mTexture;
     OrthographicCamera *camera;
@@ -37,7 +35,7 @@
  */
 -(instancetype) init : (UIImage*) bImage : (UIImage*) oImage : (UIImage*) mImage{
     if(!self) self = [super init];
-    framebuffer = [[FrameBuffer alloc] init:RGBA :200 : 200 :FALSE];
+    framebuffer = [[FrameBuffer alloc] init:RGBA :500 : 500 :FALSE];
     
     int width = [framebuffer getWidth];
     int height = [framebuffer getHeight];
@@ -57,67 +55,44 @@
     oPlane = [[Plane2D alloc] init:0 :0 :width :height :oTexture];
     [oPlane translateTo:width/2 :height/2];
     
-    finalPlane = [[Plane2D alloc] init:0 :0 :100 :100 :[framebuffer getColorBufferTexture]];
-    [finalPlane translateTo:50 :50];
+    finalPlane = [[Plane2D alloc] init:0 :0 :200 :200 :[framebuffer getColorBufferTexture]];
+    [finalPlane translateTo:100 :100];
     [finalPlane flipY];
-//    [self initMesh];
+
     return self;
 }
-
-//-(void) initMesh{
-//    float *vertices = [Plane getVertices : 0 : 0 : 100 : 100];
-//    float *textureCoords = [Plane getTextureCoordinates];
-//    
-//    VertexAttribute *posAttrib = [[VertexAttribute alloc] init:GL_FLOAT :2 :8 :vertices :@"a_pos"];
-//    VertexAttribute *texCoordsAttrib = [[VertexAttribute alloc] init:GL_FLOAT :2 :8 :textureCoords :@"a_tex"];
-//    NSMutableArray * array = [NSMutableArray array];
-//    [array addObject:posAttrib];
-//    [array addObject:texCoordsAttrib];
-//    
-//    shader = [[ShaderProgram alloc] init:@"blendvsh" :@"blendfsh" :@"glsl"];
-//    mesh = [[Mesh alloc] init:array :shader];
-//    
-//}
 
 
 /**
  source:
  http://stackoverflow.com/questions/5097145/opengl-mask-with-multiple-textures
+ http://www.andersriggelsen.dk/glblendfunc.php
  @param combined camera matrix for final render to screen.
  */
 -(void) render : (GLKMatrix4) combined{
     [camera update];
     [framebuffer begin];
     glClearColor(1, 1 , 1, 1);
-    glClear(GL_COLOR_BUFFER_BIT);
     
     glEnable(GL_BLEND);
+    [mPlane render:camera.combined];
+    
+    glBlendFunc(GL_DST_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    [bPlane render:camera.combined];
+    
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     [oPlane render:camera.combined];
     
-    
-    glBlendFuncSeparate(GL_ZERO, GL_ONE, GL_SRC_COLOR, GL_ZERO);
-    [mPlane render:camera.combined];
-    
-//    glBlendFunc(GL_DST_ALPHA, GL_ONE_MINUS_DST_ALPHA);
-//    [bPlane render:camera.combined];
-    
-    glDisable(GL_BLEND);
     [framebuffer end];
     
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     [finalPlane render:combined];
-//    [shader begin];
-//    
-//    [bTexture bind : 0];
-//    [mTexture bind : 1];
-//    
-//    [shader setUniformiWithName:"bTexture" value:0];
-//    [shader setUniformiWithName:"mTexture" value:1];
-//    
-//    [shader setUniformMatrixWithName:"combined" withMatrix4:camera.combined transpose:GL_FALSE];
-//    [mesh render:GL_TRIANGLE_FAN];
-//    
-//    [shader end];
+    
+    glDisable(GL_BLEND);
+}
+
+-(void) move: (float) x : (float) y{
+    [bPlane translateTo:x :y];
 }
 
 -(void) updateTexture : (UIImage*) bImage : (UIImage*) oImage : (UIImage*) mImage{
@@ -127,7 +102,6 @@
 }
 
 -(void) dispose{
-    [mesh dispose];
     [bTexture dispose];
     [oTexture dispose];
     [mTexture dispose];

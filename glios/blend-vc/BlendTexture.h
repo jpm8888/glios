@@ -16,5 +16,6 @@
 -(instancetype) init : (UIImage*) bImage : (UIImage*) oImage : (UIImage*) mImage;
 -(void) render : (GLKMatrix4) combined;
 -(void) updateTexture : (UIImage*) bImage : (UIImage*) oImage : (UIImage*) mImage;
+-(void) move: (float) x : (float) y;
 -(void) dispose;
 @end
