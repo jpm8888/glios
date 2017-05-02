@@ -129,6 +129,7 @@ const int NO_TEXTURE = 0;
 }
 
 -(void) bind{
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureHandle);
     [GLUtil checkGlError:"glBindTexture()"];
 }

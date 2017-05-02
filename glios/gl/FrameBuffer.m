@@ -15,14 +15,18 @@
 }
 
 
--(instancetype) init :(Format) format :(int) width :(int) height :(BOOL) hasDepth : (float) viewportWidth : (float) viewportHeight{
+-(instancetype) init :(Format) format :(int) width :(int) height :(BOOL) hasDepth{
     if (!self) self = [super init];
     self.width = width;
     self.height = height;
     self.format = format;
     self.hasDepth = hasDepth;
-    self.defaultViewportWidth = viewportWidth;
-    self.defaultViewportHeight = viewportHeight;
+    
+    GLint m_viewport[4];
+    glGetIntegerv(GL_VIEWPORT, m_viewport);
+    
+    self.defaultViewportWidth = m_viewport[2];
+    self.defaultViewportHeight = m_viewport[3];
     [self build];
     return self;
 }

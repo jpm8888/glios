@@ -53,7 +53,7 @@
     Texture *tex = [[Texture alloc] initUsingFilePath:@"test.jpg"];
     plane = [[Plane2D alloc] init:0 :0 :100 :100 : tex];
     
-    fbo = [[FrameBuffer alloc] init:RGBA :200 :200 : NO :self.view.frame.size.width : self.view.frame.size.height];
+    fbo = [[FrameBuffer alloc] init:RGBA :200 :200 : NO];
     
     [fbo begin];
     OrthographicCamera *fbocam = [[OrthographicCamera alloc] init:200 :200];

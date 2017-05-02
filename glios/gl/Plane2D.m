@@ -11,6 +11,7 @@
 #import "Mesh.h"
 #import "VertexAttribute.h"
 #import "ShaderProgram.h"
+#import "Plane.h"
 
 @implementation Plane2D{
     Mesh *mesh;
@@ -70,7 +71,7 @@
     
     [self initVertices];
     [self initColor];
-    [self initTexCoords];
+    texCoords = (GLfloat*) [Plane getTextureCoordinates];
     
     VertexAttribute *posAttrib = [[VertexAttribute alloc] init:GL_FLOAT :2 :8 :vertices :@"a_pos"];
     VertexAttribute *colorAttrib = [[VertexAttribute alloc] init:GL_FLOAT :4 :16 :color :@"a_color"];
@@ -89,9 +90,11 @@
     [self translateTo:pos.x : pos.y];
 }
 
+-(void) enableBlending{
+    [shader enableBlending];
+}
 
 -(void) render : (GLKMatrix4) matrix{
-    [shader enableBlending];
     [shader begin];
         [texture bind];
         GLKMatrix4 transformations = GLKMatrix4Multiply(translateMat, scaleMat); // T * S
@@ -100,6 +103,10 @@
         [shader setUniformMatrixWithName:"combined" withMatrix4:transformations transpose:GL_FALSE];
         [mesh render:GL_TRIANGLE_FAN];
     [shader end];
+}
+
+-(void) disableBlending{
+    [shader disableBlending];
 }
 
 -(GLKVector2) getSize{
@@ -128,31 +135,8 @@
 }
 
 -(void) initVertices{
-    int idx = 0;
-    vertices[idx++] = pos.x;
-    vertices[idx++] = pos.y;
-    vertices[idx++] = pos.x;
-    vertices[idx++] = pos.y + size.y;
-    vertices[idx++] = pos.x + size.x;
-    vertices[idx++] = pos.y + size.y;
-    vertices[idx++] = pos.x + size.x;
-    vertices[idx++] = pos.y;
+    vertices = (GLfloat*) [Plane getVertices:pos.x :pos.y :size.x :size.y];
     [bounds set:pos.x :pos.y :size.x :size.y];
-}
-
--(void) initTexCoords{
-    int idx = 0;
-    texCoords[idx++] = 0;
-    texCoords[idx++] = 1;
-    
-    texCoords[idx++] = 0;
-    texCoords[idx++] = 0;
-    
-    texCoords[idx++] = 1;
-    texCoords[idx++] = 0;
-    
-    texCoords[idx++] = 1;
-    texCoords[idx++] = 1;
 }
 
 -(void) flipX{
@@ -205,9 +189,8 @@
 }
 
 -(void) dispose{
-    free(vertices);
     free(color);
-    free(texCoords);
+    [mesh dispose];
 }
 
 

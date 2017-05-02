@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SeC-2X-M0f">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WJe-iu-GIK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -75,7 +76,47 @@
                 </glkViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSN-Dx-07w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-149" y="-28"/>
+            <point key="canvasLocation" x="210" y="-63"/>
+        </scene>
+        <!--Delegate-->
+        <scene sceneID="7i2-QG-wIw">
+            <objects>
+                <viewController id="WJe-iu-GIK" customClass="BlendViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IPE-AK-jf0"/>
+                        <viewControllerLayoutGuide type="bottom" id="EoP-Pm-W2w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gH0-67-jwI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJm-FX-YYb" customClass="GLKView">
+                                <rect key="frame" x="10" y="156" width="355" height="355"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="BJm-FX-YYb" secondAttribute="height" multiplier="1:1" id="WpN-K5-2IQ"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="WJe-iu-GIK" id="HvL-t1-uhG"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BJm-FX-YYb" firstAttribute="centerY" secondItem="gH0-67-jwI" secondAttribute="centerY" id="8ef-oo-le0"/>
+                            <constraint firstItem="BJm-FX-YYb" firstAttribute="leading" secondItem="gH0-67-jwI" secondAttribute="leading" constant="10" id="Eng-3M-0sN"/>
+                            <constraint firstItem="BJm-FX-YYb" firstAttribute="centerX" secondItem="gH0-67-jwI" secondAttribute="centerX" id="S1U-Fg-p51"/>
+                            <constraint firstAttribute="trailing" secondItem="BJm-FX-YYb" secondAttribute="trailing" constant="10" id="gNp-M4-lJS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="cTC-TF-ml5"/>
+                    <connections>
+                        <outlet property="glkview" destination="BJm-FX-YYb" id="Q9A-yt-De0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Ip-0P-jjx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1839" y="-107"/>
         </scene>
     </scenes>
 </document>

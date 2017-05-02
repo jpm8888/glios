@@ -13,6 +13,8 @@
 @interface Plane2D : NSObject
 
 -(instancetype) init : (float) x : (float) y : (float) w : (float) h : (Texture*) tex;
+-(void) enableBlending;
+-(void) disableBlending;
 -(void) render : (GLKMatrix4) matrix;
 -(void) flipX;
 -(void) flipY;

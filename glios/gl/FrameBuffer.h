@@ -12,7 +12,7 @@
 
 @interface FrameBuffer : NSObject
 
--(instancetype) init :(Format) format :(int) width :(int) height :(BOOL) hasDepth : (float) viewportWidth : (float) viewportHeight;
+-(instancetype) init :(Format) format :(int) width :(int) height :(BOOL) hasDepth;
 //-(void) setTexture :(Texture*) texture;
 -(void) bind;
 -(void) unbind;

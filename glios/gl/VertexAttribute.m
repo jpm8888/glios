@@ -25,6 +25,7 @@
 }
 
 -(void) dispose{
+    free(vertices);
     vertices = nil;
 }
 
